@@ -8,7 +8,7 @@ const users = [
 ];
 
 const loggedInUser = users.find((u) => u.name === loggedInUsername);
-console.log(loggedInUser.age);
+console.log(loggedInUser.age); //'loggedInUser' is possibly 'undefined'.
 
 // When strictNullChecks: true
 type Array = {
