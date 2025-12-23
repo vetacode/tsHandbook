@@ -8,4 +8,4 @@ function greet(person, date) {
 
 greet('Brendan');
 
-//tsc --noEmitOnError hello.ts will not produce updated JS files
+//tsc --noEmitOnError hello.ts => will not produce updated JS files
