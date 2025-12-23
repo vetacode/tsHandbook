@@ -11,3 +11,7 @@ function greet(person: string, date: Date) {
 }
 
 greet('Maddison', new Date());
+
+//infer (auto figure out)
+let msg = 'hello there!'; //let msg: string
+console.log(msg);
