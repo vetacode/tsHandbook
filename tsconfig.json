@@ -33,7 +33,7 @@
     // "noPropertyAccessFromIndexSignature": true,
 
     // Recommended Options
-    // "strict": true,
+    "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "jsx": "react-jsx",
@@ -45,8 +45,8 @@
 
     "moduleResolution": "NodeNext",
     "outDir": "dist",
-    "rootDir": "src",
-
+    "rootDir": ".",
     "esModuleInterop": true
-  }
+  },
+  "include": ["**/*.ts"]
 }
