@@ -20,4 +20,4 @@ function isAlright(status) {
   return status;
 }
 
-console.log(isAlright('bete'));
+console.log(isAlright('Always'));
