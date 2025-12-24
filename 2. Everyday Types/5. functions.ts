@@ -22,6 +22,7 @@ async function getFavoriteName(): Promise<string> {
 const names = ['Alice', 'Bob', 'Eve'];
 
 // Contextual typing for function - parameter s inferred to have type string
+//this called contextual typing because the context that the function occurred within informs what type it should have
 names.forEach(function (s) {
   console.log(s.toUpperCase());
 });
