@@ -12,3 +12,8 @@ greet(42);
 function getFavoriteNumber(): number {
   return 26;
 }
+
+//3. Functions Which Return Promise
+async function getFavoriteName(): Promise<string> {
+  return 'Donny';
+}
