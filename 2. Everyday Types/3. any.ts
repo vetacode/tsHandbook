@@ -7,3 +7,5 @@ obj();
 obj.bar = 100;
 obj = 'hello';
 const n: number = obj;
+
+//The any type is useful when you don’t want to write out a long type just to convince TypeScript that a particular line of code is okay.
