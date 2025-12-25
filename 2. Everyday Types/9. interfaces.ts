@@ -79,3 +79,15 @@ interface Window {
 
 const src = 'const a = "Hello World"';
 window.ts.transpileModule(src, {});
+
+//2. Adding new fields to an existing Type?
+//A type cannot be changed after being created
+type Window = {
+  title: string;
+};
+
+type Window = {
+  ts: TypeScriptAPI;
+};
+
+// Error: Duplicate identifier 'Window'.
