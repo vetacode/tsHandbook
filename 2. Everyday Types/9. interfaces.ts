@@ -121,3 +121,5 @@ echoAnimal({ name: 12345 });
 // 3. Nama interfaces akan selalu muncul dalam bentuk aslinya dalam error messages (type aliases tidak), tetapi hanya ketika digunakan berdasarkan namanya.
 // 4. Menggunakan interfaces dengan extends seringkali performa lebih baik untuk kompiler daripada type aliases dengan intersections.
 // */
+
+// PRACTICAL USE IMPORTANT NOTES: use interface until you need to use features from type. //
