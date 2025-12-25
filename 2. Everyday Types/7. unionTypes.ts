@@ -21,3 +21,14 @@ function printId(id: number | string) {
   // Property 'toUpperCase' does not exist on type 'string | number'.
   //   Property 'toUpperCase' does not exist on type 'number'.
 }
+
+//SOLUTION: Use narrowing
+function printId(id: number | string) {
+  if (typeof id === 'string') {
+    // In this branch, id is of type 'string'
+    console.log(id.toUpperCase());
+  } else {
+    // Here, id is of type 'number'
+    console.log(id);
+  }
+}
