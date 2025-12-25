@@ -39,3 +39,7 @@
 // canvas?.getContext("2d");
 
 const myCanvas = document.getElementById('main_canvas') as HTMLCanvasElement;
+
+const myCanvas2 = <HTMLCanvasElement>document.getElementById('main_canvas');
+
+// NOTES: Because type assertions are removed at compile-time, there is no runtime checking associated with a type assertion. There won’t be an exception or null generated if the type assertion is wrong.
