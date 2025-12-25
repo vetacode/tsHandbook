@@ -48,3 +48,9 @@ const myCanvas2 = <HTMLCanvasElement>document.getElementById('main_canvas');
 // This will Error:
 const x = 'hello' as number;
 // Conversion of type 'string' to type 'number' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+
+// Sometimes this rule can be too conservative and will disallow more complex coercions that might be valid. If this happens, you can use two assertions, first to any (or unknown, which we’ll introduce later), then to the desired type:
+declare const expr: any;
+type T = { a: 1; b: 2; c: 3 };
+// ---cut---
+const a = expr as any as T;
