@@ -93,7 +93,23 @@ type Windows = {
 };
 
 type Windows = {
+  // Error: Duplicate identifier 'Windows'.
   ts: TypeScriptAPI;
 };
 
-// Error: Duplicate identifier 'Windows'.
+//3. The error difference interface vs type
+type Mammal = {
+  //  (property) name: string
+  name: string;
+};
+
+// interface Mammal {
+//   //  (property) Mammal.name: string
+//   name: string;
+// }
+
+function echoAnimal(m: Mammal) {
+  console.log(m.name);
+}
+
+echoAnimal({ name: 12345 });
