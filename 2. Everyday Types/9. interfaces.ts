@@ -113,3 +113,11 @@ function echoAnimal(m: Mammal) {
 }
 
 echoAnimal({ name: 12345 });
+
+//* KESIMPULAN
+// 1. Sebelum TypeScript versi 4.2, nama type aliases mungkin muncul dalam error messages, terkadang menggantikan type anonimous yang setara (yang mungkin diinginkan atau tidak). interfaces akan selalu disebutkan namanya dalam error messages.
+// 2. type aliases tidak dapat auto merged, tetapi interfaces dapat.
+// 3. interfaces hanya dapat digunakan untuk mendeklarasikan bentuk objek, bukan untuk mengganti nama primitif.
+// 3. Nama interfaces akan selalu muncul dalam bentuk aslinya dalam error messages (type aliases tidak), tetapi hanya ketika digunakan berdasarkan namanya.
+// 4. Menggunakan interfaces dengan extends seringkali performa lebih baik untuk kompiler daripada type aliases dengan intersections.
+// */
