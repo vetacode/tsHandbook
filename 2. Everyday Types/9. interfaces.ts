@@ -9,3 +9,6 @@ function printCoord(pt: Point) {
 }
 
 printCoord({ x: 100, y: 100 });
+
+//Differences Between Type Aliases and Interfaces
+// Almost all features of an interface are available in type, the key distinction is that a type cannot be re-opened to add new properties vs an interface which is always extendable.
