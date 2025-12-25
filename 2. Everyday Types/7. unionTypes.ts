@@ -43,3 +43,9 @@ function welcomePeople(x: string[] | string) {
     console.log('Welcome lone traveler ' + x);
   }
 }
+
+//If every member in a union has a property in common, you can use the property without narrowing:
+// Return type is inferred as number[] | string
+function getFirstThree(x: number[] | string) {
+  return x.slice(0, 3);
+}
