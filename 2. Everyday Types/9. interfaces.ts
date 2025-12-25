@@ -33,7 +33,7 @@ const bear = getBear();
 bear.name;
 bear.honey;
 
-//2. Extending type
+//1. Extending type with intersections
 {
   type Animal = {
     name: string;
@@ -54,3 +54,28 @@ bear.honey;
   bear.name;
   bear.honey;
 }
+
+//2. Adding new fields to an existing interface
+
+//-----------MOCK-----------------
+interface TypeScriptAPI {
+  transpileModule(input: string, options: object): { outputText: string };
+}
+
+declare global {
+  interface Window {
+    ts: TypeScriptAPI;
+  }
+}
+//--------------------------------
+
+interface Window {
+  title: string;
+}
+
+interface Window {
+  ts: TypeScriptAPI;
+}
+
+const src = 'const a = "Hello World"';
+window.ts.transpileModule(src, {});
