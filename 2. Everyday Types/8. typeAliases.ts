@@ -45,3 +45,17 @@ userInput = 'new input';
 // Alias hanya:
 // Membantu developer membaca maksud kode
 // Memberi hint semantik, bukan proteksi
+
+//untuk membuat betul2 string steril
+type SanitizedString2 = string & { __brand: 'sanitized' };
+
+function sanitizeInput2(str: string): SanitizedString2 {
+  return sanitize(str) as SanitizedString2;
+}
+
+let safe = sanitizeInput2(getInput());
+safe = 'new input'; //ERROR
+//Type 'string' is not assignable to type 'SanitizedString2'.
+// Type 'string' is not assignable to type '{ __brand: "sanitized"; }'.
+
+console.log(safe);
