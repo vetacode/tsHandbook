@@ -1,3 +1,5 @@
+//DISEBUT JUGA TYPE CASTING
+
 // 1. Kadang kita punya pengetahuan tambahan tentang tipe suatu nilai, tapi TypeScript tidak bisa mengetahuinya secara otomatis.
 
 // contoh:
