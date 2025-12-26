@@ -41,3 +41,9 @@ function configure(x: Options | 'auto') {
 configure({ width: 100 });
 configure('auto');
 configure('automatic'); //Argument of type '"automatic"' is not assignable to parameter of type 'Options | "auto"'.
+
+//boolean literal type
+let isActive: true | false;
+let isActive2: boolean;
+declare const isActive3: true | false;
+declare const isActive4: boolean;
