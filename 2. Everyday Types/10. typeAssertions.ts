@@ -55,5 +55,7 @@ type T = { a: 1; b: 2; c: 3 };
 // ---cut---
 
 //syntax: value as any as TargetType
-const a = expr as any as T; //double type assertion
+const a = expr as any as T; //double type assertion (pentimg untuk unknown)
 // menghasilkan type a = T (const a: T)
+const b = expr as T; //sebetulnya bisa langsung sperti ini coz type expr sdh di declare sblmnya sbg any
+//const b: T
