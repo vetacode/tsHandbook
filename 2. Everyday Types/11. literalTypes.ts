@@ -43,7 +43,14 @@ configure('auto');
 configure('automatic'); //Argument of type '"automatic"' is not assignable to parameter of type 'Options | "auto"'.
 
 //boolean literal type
-let isActive: true | false;
-let isActive2: boolean;
-declare const isActive3: true | false;
-declare const isActive4: boolean;
+let isActive: true | false; // redundant
+let isActive2: boolean; //Best practice 90% of the time
+declare const isActive3: true | false; //artinya tipe variable isActive sdh ada di runtime
+declare const isActive4: boolean; //Gunakan jika file berasal dari external spt bundler atau luar file TS itu sendiri
+
+// NOTES: Gunakan true | false hanya jika: true dan false punya arti berbeda secara tipe
+function setFlag(flag: true): 'enabled';
+function setFlag(flag: false): 'disabled';
+function setFlag(flag: true | false) {
+  return flag ? 'enabled' : 'disabled';
+}
