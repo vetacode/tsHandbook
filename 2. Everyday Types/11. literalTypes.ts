@@ -22,3 +22,11 @@ function printText(s: string, alignment: 'left' | 'right' | 'center') {
 }
 printText('Hello, world', 'left');
 printText("G'day, mate", 'centre'); // Argument of type '"centre"' is not assignable to parameter of type '"left" | "right" | "center"'.
+
+//Numeric literal
+function compare(a: string, b: string): -1 | 0 | 1 {
+  return a === b ? 0 : a > b ? 1 : -1;
+}
+console.log(compare('5', '2')); //1
+console.log(compare('5', '7')); //-1
+console.log(compare('7', '7')); //0
