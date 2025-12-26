@@ -67,9 +67,19 @@ const obj = { counter: 0 };
 
 //Same as
 const obj2: { counter: number } = { counter: 0 };
-
+//ini membuat value obj props jadi flexible (mutable), bisa dirubah selama type number
 if (someCondition) {
   obj.counter = 1;
 }
-
 console.log(obj);
+
+//untuk membuat immutable gunakan as const:
+const num = { counter: 0 } as const;
+//as const membuat num menjadi read-only:
+// const num: {
+//   readonly counter: 0
+// }
+
+if (true) {
+  num.counter = 1; //Cannot assign to 'counter' because it is a read-only property.
+}
