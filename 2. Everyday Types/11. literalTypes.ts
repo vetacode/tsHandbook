@@ -10,3 +10,17 @@ const constantString = 'Hello World';
 // has a literal type representation
 
 constantString; // const constantString: "Hello World"
+
+//One variable
+let x: 'hello' = 'hello'; // OK
+x = 'hello'; // ...
+x = 'howdy'; // Type '"howdy"' is not assignable to type '"hello"'.
+
+
+//Union
+function printText(s: string, alignment: "left" | "right" | "center") {
+  // ...
+}
+printText("Hello, world", "left");
+printText("G'day, mate", "centre");
+Argument of type '"centre"' is not assignable to parameter of type '"left" | "right" | "center"'.
