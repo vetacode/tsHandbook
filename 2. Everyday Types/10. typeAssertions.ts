@@ -45,8 +45,8 @@ const myCanvas2 = <HTMLCanvasElement>document.getElementById('main_canvas');
 // NOTES: Because type assertions are removed at compile-time, there is no runtime checking associated with a type assertion. There won’t be an exception or null generated if the type assertion is wrong.
 
 // TypeScript only allows type assertions which convert to a more specific or less specific version of a type. This rule prevents “impossible” coercions.
-// This will Error:
-const x = 'hello' as number;
+// This will results Error:
+const x = 'hello' as number; //impossible coercion
 // Conversion of type 'string' to type 'number' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
 
 // Sometimes this rule can be too conservative and will disallow more complex coercions that might be valid. If this happens, you can use two assertions, first to any (or unknown, which we’ll introduce later), then to the desired type:
