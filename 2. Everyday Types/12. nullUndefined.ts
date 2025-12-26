@@ -9,3 +9,10 @@ function doSomething(x: string | null) {
   }
 }
 doSomething('Go get a success');
+
+//Non-null Assertion Operator (Postfix !)
+function liveDangerously(x?: number | null) {
+  // '?' adds undefined type
+  // No error
+  console.log(x!.toFixed()); // '!' memastikan bahwa x tidak 'null | undefined'
+}
