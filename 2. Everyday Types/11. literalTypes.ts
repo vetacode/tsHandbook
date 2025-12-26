@@ -83,3 +83,17 @@ const num = { counter: 0 } as const;
 if (true) {
   num.counter = 1; //Cannot assign to 'counter' because it is a read-only property.
 }
+
+//Literal inference on string
+declare function handleRequest(url: string, method: 'GET' | 'POST'): void;
+
+const req = { url: 'https://example.com', method: 'GET' };
+handleRequest(req.url, req.method); // Argument of type 'string' is not assignable to parameter of type '"GET" | "POST"'.
+
+//solution 1
+const req2 = { url: 'https://example.com', method: 'GET' as 'GET' }; //I intend for req.method to always have the literal type "GET", preventing the possible assignment of "GUESS" to that field after
+handleRequest(req2.url, req2.method as 'GET'); //I know for other reasons that req.method has the value "GET"
+
+//Solution 2
+const req3 = { url: 'https://example.com', method: 'GET' } as const; //convert the entire object to be type literals
+handleRequest(req3.url, req3.method);
