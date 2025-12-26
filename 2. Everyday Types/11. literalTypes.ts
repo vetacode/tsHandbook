@@ -54,3 +54,22 @@ function setFlag(flag: false): 'disabled';
 function setFlag(flag: true | false) {
   return flag ? 'enabled' : 'disabled';
 }
+
+//LITERAL INFERENCE
+declare const someCondition: boolean;
+// ---cut---
+const obj = { counter: 0 };
+
+//TS meng-infer
+// const obj: {
+//   counter: number
+// }
+
+//Same as
+const obj2: { counter: number } = { counter: 0 };
+
+if (someCondition) {
+  obj.counter = 1;
+}
+
+console.log(obj);
