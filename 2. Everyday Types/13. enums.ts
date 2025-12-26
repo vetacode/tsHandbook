@@ -13,4 +13,4 @@ enum Direction2 {
   Right,
 }
 
-console.log(typeof Direction);
+console.log(typeof Direction); //object
