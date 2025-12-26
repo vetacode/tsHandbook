@@ -30,3 +30,14 @@ function compare(a: string, b: string): -1 | 0 | 1 {
 console.log(compare('5', '2')); //1
 console.log(compare('5', '7')); //-1
 console.log(compare('7', '7')); //0
+
+//Combining with non literal
+interface Options {
+  width: number;
+}
+function configure(x: Options | 'auto') {
+  // ...
+}
+configure({ width: 100 });
+configure('auto');
+configure('automatic'); //Argument of type '"automatic"' is not assignable to parameter of type 'Options | "auto"'.
