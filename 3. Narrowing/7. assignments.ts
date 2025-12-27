@@ -11,3 +11,6 @@ x = 'goodbye!';
 console.log(x);
 
 // let x: string
+
+x = true;
+// Type 'boolean' is not assignable to type 'string | number'.
