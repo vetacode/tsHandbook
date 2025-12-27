@@ -1,10 +1,10 @@
 function example(x: string | number, y: string | boolean) {
   if (x === y) {
     // We can now call any 'string' method on 'x' or 'y'.
-    x.toUpperCase();
+    console.log(x.toUpperCase());
 
     // (method) String.toUpperCase(): string
-    y.toLowerCase();
+    console.log(y.toLowerCase());
 
     // (method) String.toLowerCase(): string
   } else {
@@ -16,6 +16,8 @@ function example(x: string | number, y: string | boolean) {
     // (parameter) y: string | boolean
   }
 }
+
+example('Saya', 'Saya');
 
 function printAll(strs: string | string[] | null) {
   if (strs !== null) {
