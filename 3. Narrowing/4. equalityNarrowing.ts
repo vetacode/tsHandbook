@@ -19,6 +19,7 @@ function example(x: string | number, y: string | boolean) {
 
 example('Saya', 'Saya');
 
+
 function printAll(strs: string | string[] | null) {
   if (strs !== null) {
     if (typeof strs === 'object') {
