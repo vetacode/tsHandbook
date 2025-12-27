@@ -6,8 +6,10 @@ function padLeft(padding: number | string, input: string): string {
 
 //ga bisa assign/terapin argument dg type 'string | number' ke parameter dg type 'number'
 
-//solusi: narrowing => type disaring => hanya boleh masuk type number only
+//solusi: narrowing => the process of refining types to more specific types than declared
+//type disaring => hanya boleh masuk type number only
 function padLeft2(padding: number | string, input: string): string {
+  // adds typeguard
   if (typeof padding === 'number') {
     return ' '.repeat(padding) + input;
   }
