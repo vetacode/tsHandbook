@@ -38,3 +38,17 @@ function printAll(strs: string | string[] | null) {
     console.log(strs);
   }
 }
+
+//negating values
+//! filter out from negated branches.
+function multiplyAll(
+  values: number[] | undefined,
+  factor: number
+): number[] | undefined {
+  if (!values) {
+    //jika values undefined, lgsg keluar return undefined, jika values number[] => jalankan else
+    return values;
+  } else {
+    return values.map((x) => x * factor);
+  }
+}
