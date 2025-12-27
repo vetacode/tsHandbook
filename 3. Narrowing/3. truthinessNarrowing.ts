@@ -25,3 +25,16 @@ console.log(!'' === true); //true
 Boolean('hello'); // type: boolean, value: true
 !!'world'; // type: true,    value: true
 // This kind of expression is always truthy.
+
+//guarding from null and undefined
+function printAll(strs: string | string[] | null) {
+  if (strs && typeof strs === 'object') {
+    //jk strs null & undefined => falsy, berarti type strs === string => lgsg ke else if
+    //jk strs sting[] => true => type of strs === object => jalankan code if
+    for (const s of strs) {
+      console.log(s);
+    }
+  } else if (typeof strs === 'string') {
+    console.log(strs);
+  }
+}
