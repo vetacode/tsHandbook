@@ -1,3 +1,5 @@
+//Control flow analysis memungkinkan TypeScript menentukan tipe variabel berdasarkan apa yang pasti terjadi di setiap jalur eksekusi kode.
+
 function example() {
   let x: string | number | boolean;
 
