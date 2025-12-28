@@ -1,8 +1,6 @@
-interface Func {
-  a: string;
-}
+type Func = (a: string) => void;
 
-function greeter(fn: (a: string) => void) {
+function greeter(fn: Func) {
   fn('Hello World');
 }
 
