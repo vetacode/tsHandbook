@@ -43,12 +43,12 @@ function getArea(shape: Shape) {
   //    punya property yang sama (kind)
   //    dengan string literal yang berbeda
   interface Circle {
-    kind: 'circle';
+    kind: 'circle'; //'kind' is a discriminant property of Shape
     radius: number;
   }
 
   interface Square {
-    kind: 'square';
+    kind: 'square'; //'kind' is a discriminant property of Shape
     sideLength: number;
   }
 
@@ -64,6 +64,34 @@ function getArea(shape: Shape) {
   function getArea(shape: Shape) {
     if (shape.kind === 'circle') {
       return Math.PI * shape.radius ** 2; //shape: Circle ==> radius is available
+    }
+  }
+}
+
+{
+  // The same checking works with switch statements as well. Now we can try to write our complete getArea without any pesky ! non-null assertions.
+
+  interface Circle {
+    kind: 'circle';
+    radius: number;
+  }
+  interface Square {
+    kind: 'square';
+    sideLength: number;
+  }
+
+  type Shape = Circle | Square;
+
+  function getArea(shape: Shape) {
+    switch (shape.kind) {
+      case 'circle':
+        return Math.PI * shape.radius ** 2;
+
+      // (parameter) shape: Circle
+      case 'square':
+        return shape.sideLength ** 2;
+
+      // (parameter) shape: Square
     }
   }
 }
