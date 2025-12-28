@@ -13,6 +13,7 @@ console.log(firstElement2(['coba', 'array', 'of', 'strings'])); //coba.
 
 //Removing undefined
 function firstElement3<T>(arr: [T, ...T[]]): T {
+  //[Type, ...Type[]] = tuple non-empty
   return arr[0];
 }
 console.log(firstElement3([20, 30, 40, 70, 90])); //20
