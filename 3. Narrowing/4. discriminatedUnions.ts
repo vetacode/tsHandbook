@@ -31,4 +31,6 @@ function getArea(shape: Shape) {
   }
 }
 
-//but tht is error prone at the projects
+//but that is not ideal. non-null assertions (!) type checker assertions are error-prone if we start to move code around
+
+//Other Solution
