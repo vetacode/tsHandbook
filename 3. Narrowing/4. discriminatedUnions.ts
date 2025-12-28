@@ -38,6 +38,10 @@ function getArea(shape: Shape) {
 
 {
   //Other Solution: pisahkan interface
+  //Discriminated union terjadi karena:
+  //    setiap type (Circle, Square)
+  //    punya property yang sama (kind)
+  //    dengan string literal yang berbeda
   interface Circle {
     kind: 'circle';
     radius: number;
@@ -48,7 +52,7 @@ function getArea(shape: Shape) {
     sideLength: number;
   }
 
-  type Shape = Circle | Square; //combined type with literal string each resulting discriminated union
+  type Shape = Circle | Square; // Discriminated union: union of types that share a common literal property (`kind`)
 
   function getArea(shape: Shape) {
     return Math.PI * shape.radius ** 2; //shape: Shape
@@ -56,7 +60,7 @@ function getArea(shape: Shape) {
     //   Property 'radius' does not exist on type 'Square'.
   }
 
-  //use type narrowing
+  //use type narrowing in discriminated union
   function getArea(shape: Shape) {
     if (shape.kind === 'circle') {
       return Math.PI * shape.radius ** 2; //shape: Circle ==> radius is available
