@@ -33,4 +33,30 @@ function getArea(shape: Shape) {
 
 //but that is not ideal. non-null assertions (!) type checker assertions are error-prone if we start to move code around
 
-//Other Solution
+{
+  //Other Solution: pisahkan interface
+  interface Circle {
+    kind: 'circle';
+    radius: number;
+  }
+
+  interface Square {
+    kind: 'square';
+    sideLength: number;
+  }
+
+  type Shape = Circle | Square;
+
+  function getArea(shape: Shape) {
+    return Math.PI * shape.radius ** 2; //shape: Shape
+    // Property 'radius' does not exist on type 'Shape'.
+    //   Property 'radius' does not exist on type 'Square'.
+  }
+
+  //use type narrowing
+  function getArea(shape: Shape) {
+    if (shape.kind === 'circle') {
+      return Math.PI * shape.radius ** 2; //shape: Circle ==> radius is available
+    }
+  }
+}
