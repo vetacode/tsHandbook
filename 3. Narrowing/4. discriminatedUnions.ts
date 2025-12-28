@@ -1,3 +1,5 @@
+// discriminated union is When every type in a union contains a common property with literal types
+
 interface Shape {
   kind: 'circle' | 'square';
   radius?: number;
