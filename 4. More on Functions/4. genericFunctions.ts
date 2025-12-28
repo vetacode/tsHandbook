@@ -18,3 +18,11 @@ function firstElement3<T>(arr: [T, ...T[]]): T {
 }
 console.log(firstElement3([20, 30, 40, 70, 90])); //20
 // type: function firstElement3<number>(arr: [number, ...number[]]): number
+
+//adding a type parameter Type(or T) to this function and using it in two places, we’ve created a link between the input of the function (the array) and the output (the return value)
+// s is of type 'string'
+const s = firstElement(['a', 'b', 'c']);
+// n is of type 'number'
+const n = firstElement([1, 2, 3]);
+// u is of type undefined
+const u = firstElement([]);
