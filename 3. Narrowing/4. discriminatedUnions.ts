@@ -1,4 +1,5 @@
 // discriminated union is When every type in a union contains a common property with literal types
+// ==> can narrow out the members of the union
 
 interface Shape {
   kind: 'circle' | 'square';
@@ -47,7 +48,7 @@ function getArea(shape: Shape) {
     sideLength: number;
   }
 
-  type Shape = Circle | Square;
+  type Shape = Circle | Square; //combined type with literal string each resulting discriminated union
 
   function getArea(shape: Shape) {
     return Math.PI * shape.radius ** 2; //shape: Shape
