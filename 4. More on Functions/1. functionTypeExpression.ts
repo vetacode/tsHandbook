@@ -1,6 +1,6 @@
-type Func = (a: string) => void;
+type greetFunc = (a: string) => void;
 
-function greeter(fn: Func) {
+function greeter(fn: greetFunc) {
   fn('Hello World');
 }
 
@@ -9,8 +9,3 @@ function printToConsole(s: string) {
 }
 
 greeter(printToConsole);
-
-type GreetFunction = (a: string) => void;
-function greeter2(fn: GreetFunction) {
-  // ...
-}
