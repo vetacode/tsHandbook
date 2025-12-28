@@ -10,3 +10,10 @@ function firstElement2<T>(arr: T[]): T | undefined {
 }
 console.log(firstElement2(['coba', 'array', 'of', 'strings'])); //coba.
 // type: function firstElement2<string>(arr: string[]): string | undefined
+
+//Removing undefined
+function firstElement3<T>(arr: [T, ...T[]]): T {
+  return arr[0];
+}
+console.log(firstElement3([20, 30, 40, 70, 90])); //20
+// type: function firstElement3<number>(arr: [number, ...number[]]): number
