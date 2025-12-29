@@ -4,8 +4,16 @@ function fn(n: number) {
 }
 
 function f(x?: number) {
-  // ? marks optional
+  // ? marks optional => adds undefined
   // ...
 }
 f(); // OK
 f(10); // OK
+
+//can also provide parameter default
+function fx(x = 10) {
+  // ...
+}
+
+fx();
+fx(5);
