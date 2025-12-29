@@ -15,7 +15,8 @@ const a = firstElement1([1, 2, 3]);
 const b = firstElement2([1, 2, 3]);
 
 //2. Use Fewer Type Parameters
-//    Here’s another pair of similar functions:
+//   Here’s another pair of similar functions:
+//   Rule: Always use as few type parameters as possible
 
 function filter1<Type>(arr: Type[], func: (arg: Type) => boolean): Type[] {
   return arr.filter(func);
