@@ -1,4 +1,8 @@
-function longest<Type extends { length: number }>(a: Type, b: Type) {
+interface P {
+  length: number;
+}
+
+function longest<Type extends P>(a: Type, b: Type) {
   if (a.length >= b.length) {
     return a;
   } else {
