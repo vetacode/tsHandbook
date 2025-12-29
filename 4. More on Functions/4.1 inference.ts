@@ -8,3 +8,4 @@ function map<Input, Output>(
 // Parameter 'n' is of type 'string'
 // 'parsed' is of type 'number[]'
 const parsed = map(['1', '2', '3'], (n) => parseInt(n));
+console.log(parsed); // [ 1, 2, 3 ]
