@@ -10,3 +10,13 @@ function minimumLength<Type extends { length: number }>(
     //   '{ length: number; }' is assignable to the constraint of type 'Type', but 'Type' could be instantiated with a different subtype of constraint '{ length: number; }'.
   }
 }
+
+//Penting:
+// Type bukan { length: number },
+// tapi tipe spesifik apa pun yang memenuhi syarat itu.
+
+console.log(minimumLength('hello', 10)); //{ length: 10 }
+
+const arr = minimumLength([1, 2, 3], 6);
+console.log(arr); //{ length: 6 }
+console.log(arr.slice(0)); // TypeError: arr.slice is not a function
