@@ -2,7 +2,7 @@ interface P {
   length: number;
 }
 
-function longest<Type extends P>(a: Type, b: Type) {
+function longest<T extends P>(a: T, b: T) {
   if (a.length >= b.length) {
     return a;
   } else {
