@@ -17,14 +17,27 @@ const b = firstElement2([1, 2, 3]);
 //2. Use Fewer Type Parameters
 //   Here’s another pair of similar functions:
 //   Rule: Always use as few type parameters as possible
-
 function filter1<Type>(arr: Type[], func: (arg: Type) => boolean): Type[] {
   return arr.filter(func);
 }
 
-function filter2<Type, Func extends (arg: Type) => boolean>(
+function filter2<Type, Func extends (arg: Type) => boolean>( // RED FLAG: parameter Func that doesn’t relate two values
   arr: Type[],
   func: Func
 ): Type[] {
   return arr.filter(func);
 }
+
+//3. Type Parameters Should Appear Twice
+//   Sometimes we forget that a function might not need to be generic:
+//   Rule: If a type parameter only appears in one location, strongly reconsider if you actually need it
+function greet<Str extends string>(s: Str) {
+  console.log('Hello, ' + s);
+}
+greet('world');
+
+//just write simpler version:
+function greet2(s: string) {
+  console.log('Hello, ' + s);
+}
+greet2('world');
