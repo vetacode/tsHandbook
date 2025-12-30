@@ -1,5 +1,5 @@
 //RULES
-//1. Always prefer parameters with union types instead of overloads when possible
+//Always prefer parameters with union types instead of overloads when possible
 
 function len(s: string): number;
 function len(arr: any[]): number;
