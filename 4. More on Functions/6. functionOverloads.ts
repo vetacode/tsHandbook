@@ -67,4 +67,11 @@ console.log(double(4)); //8
 // Logic terlalu kompleks (overload terlalu banyak)
 
 //Rule of thumb:
-// Kalau function kita dipakai orang lain (atau future you) → overload layak dipertimbangkan.
+// Kalau function kita dipakai orang lain (atau future you) → pertimbangkan pake overload
+
+//contoh Fetch API client
+function request(url: string): Promise<string>;
+function request<T>(url: string, json: true): Promise<T>;
+function request(url: string, json?: boolean) {
+  return fetch(url).then((r) => (json ? r.json() : r.text()));
+}
