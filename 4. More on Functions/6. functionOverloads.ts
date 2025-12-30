@@ -28,5 +28,26 @@ function fn(x: number): number;
 function fn(x: string | number) {
   return typeof x === 'string' ? x.toUpperCase() : x * 2;
 }
-
 console.log(fn('Hello World of Andromeda Galaxy')); //HELLO WORLD OF ANDROMEDA GALAXY
+
+//DIFFERENCE
+//GA PAKE OVERLOAD
+function double1(x: string | number): string | number {
+  return typeof x === 'string' ? x + x : x * 2;
+}
+//it runs, tapi type return masih bias (string | number), padahal sdh pasti hanya string
+console.log(double1('hello')); //'hellohello'
+//            ^function double(x: string | number): string | number
+
+//SOLUSI: pake function overload
+function double(x: string): string;
+function double(x: number): number;
+function double(x: string | number) {
+  return typeof x === 'string' ? x + x + x : x * 2;
+}
+
+console.log(double('Hai ')); //Hai Hai Hai
+//            ^function double(x: string): string (+1 overload)
+
+console.log(double(4)); //8
+//            ^function double(x: number): number (+1 overload)
