@@ -51,3 +51,20 @@ console.log(double('Hai ')); //Hai Hai Hai
 
 console.log(double(4)); //8
 //            ^function double(x: number): number (+1 overload)
+
+//Rule penting:
+// Harus ada ≥ 2 overload signatures
+// Implementation harus kompatibel dengan semua overload
+// Pemanggil hanya boleh memanggil sesuai overload, bukan implementasi
+
+// Kapan HARUS pakai overload jika?
+// Input menentukan return type
+// API punya beberapa mode pemanggilan
+// Ingin DX (developer experience) bagus
+
+// Jangan pakai overload jika:
+// Bisa diselesaikan dengan generic
+// Logic terlalu kompleks (overload terlalu banyak)
+
+//Rule of thumb:
+// Kalau function kita dipakai orang lain (atau future you) → overload layak dipertimbangkan.
