@@ -21,3 +21,13 @@ function f2(a: unknown) {
   a.b();
   // 'a' is of type 'unknown'.
 }
+
+//unknown bisa berguna saat kita ingin describing function types yg me returns unknown value
+declare const someRandomString: string;
+// ---cut---
+function safeParse(s: string): unknown {
+  return JSON.parse(s);
+}
+
+// Need to be careful with 'obj'!
+const obj = safeParse(someRandomString); //const obj: unknown => Hati2 dgn obj! return unknown tapi ga ada error
