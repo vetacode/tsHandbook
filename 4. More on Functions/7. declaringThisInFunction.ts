@@ -12,7 +12,6 @@ user.becomeAdmin();
 console.log(user.admin); //true
 
 //Declare type for 'this' in the function body
-
 interface User {
   id: number;
   admin: boolean;
