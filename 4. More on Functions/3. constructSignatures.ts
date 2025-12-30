@@ -7,7 +7,7 @@ function fn(ctor: SomeConstructor) {
   return new ctor('hello');
 }
 
-//combine call and construct signatures in the same type
+//combine call and construct signatures in the same type/interface
 interface CallOrConstruct {
   (n?: number): string;
   new (s: string): Date;

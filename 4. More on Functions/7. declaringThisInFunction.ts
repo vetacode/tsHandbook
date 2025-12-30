@@ -17,15 +17,31 @@ interface User {
   id: number;
   admin: boolean;
 }
-declare const getDB: () => DB;
-// ---cut---
+
 interface DB {
+  users: User[];
   filterUsers(filter: (this: User) => boolean): User[];
 }
 
-const db = getDB();
+function getDB(): DB {
+  return {
+    users: [
+      { id: 1, admin: true },
+      { id: 2, admin: false },
+    ],
+    filterUsers(filter) {
+      return this.users.filter((user) => filter.call(user));
+    },
+  };
+}
+
+const db = getDB(); //db adalah object bertipe DB
 const admins = db.filterUsers(function (this: User) {
   return this.admin;
 });
-
-console.log(admins);
+console.log(db);
+//{
+//   users: [ { id: 1, admin: true }, { id: 2, admin: false } ],
+//   filterUsers: [Function: filterUsers]
+// }
+console.log(admins); //[ { id: 1, admin: true } ]
