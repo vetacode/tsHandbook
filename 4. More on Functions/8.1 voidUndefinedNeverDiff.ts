@@ -62,5 +62,29 @@ function crash(): never {
 function infinite(): never {
   while (true) {}
 }
-
 //Keduanya ga pernah return, never reach end
+
+//Edge case: never dalam narrowing
+function assertUnreachable(x: never): never {
+  throw new Error('Unexpected value: ' + x);
+}
+
+type Shape =
+  | {
+      kind: 'circle';
+      radius: number;
+    }
+  | { kind: 'square'; side: number };
+
+function area(s: Shape) {
+  switch (s.kind) {
+    case 'circle':
+      return Math.PI * s.radius ** 2;
+    case 'square':
+      return s.side ** 2;
+    default:
+      return assertUnreachable(s); //compile-time safety
+
+    //klo nambah shape baru, TS langsung error.
+  }
+}
