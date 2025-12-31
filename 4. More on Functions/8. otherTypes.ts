@@ -34,10 +34,11 @@ const func: () => void = () => {
 };
 
 function func2(): () => void {
+  // ketat (function implementation)
   return 123;
 }
 
-let x = func2();
+let x = func2(); //let x: () => void
 
 //2. object: a special type refers to any value that isn’t a primitive (string, number, bigint, boolean, symbol, null, or undefined)
 //    object is not Object. Always use object!
