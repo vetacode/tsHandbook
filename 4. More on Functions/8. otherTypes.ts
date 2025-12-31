@@ -10,6 +10,14 @@ function noop() {
 // void adalah type space bukan function (value space)
 // contoh type space: string, number, () => void
 // contoh value space: 'hello', 123, () => {}
+// kita tdk bs gunakan type sebagai value, contoh:
+
+type Car = { speed: number };
+
+// const myCar = Car; //Ini salah, Car itu type/konsep, bukan benda/value
+//yg benar:
+const fastCar = { speed: 250 };
+console.log(fastCar); //{ speed: 250 }
 
 //2. object: a special type refers to any value that isn’t a primitive (string, number, bigint, boolean, symbol, null, or undefined)
 //    object is not Object. Always use object!
