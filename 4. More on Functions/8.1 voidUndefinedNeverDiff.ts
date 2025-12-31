@@ -5,7 +5,7 @@ function log(msg: string): void {
 
 //function boleh return sesuatu secara runtime tapi caller ga boleh pakai hasil return nya:
 const x = log('Hello');
-x.toString(); //Error: Property 'toString' does not exist on type 'void'.
+// x.toString(); //Error: Property 'toString' does not exist on type 'void'.
 
 //Edge case: callback void
 const cb: () => void = () => {
@@ -26,3 +26,21 @@ function getNothing(): undefined {
   return undefined; //Wajib return undefined
   //return; // Error -> coz walaupun return; === return undefined; saat runtime, tapi TS menganggap ini ga explisit -> Error
 }
+
+//Edge case: undefined vs optional return
+function find(x: number): number | undefined {
+  if (x > 0) return x;
+  return undefined; //explicit
+}
+
+//caller
+let result = find(-1); //const result: number | undefined
+if (result !== undefined) {
+  result.toFixed(); //ga error krn type nya udh di narrowing (type undefined hilang, sisa type number)
+}
+console.log(result); //undefined
+
+if (result === undefined) {
+  result = 0; //fallback, return value result menjadi 0
+}
+console.log(result); // 0
