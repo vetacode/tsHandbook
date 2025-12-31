@@ -115,3 +115,13 @@ function fn(x: string | number) {
     x; // has type 'never'!
   }
 }
+
+//5. Function
+// is a global type Function, describes properties like bind, call, apply, and others
+// Also has the special property that values of type Function can always be called; these calls return any:
+
+function doSomething(f: Function) {
+  //function doSomething(f: Function): any
+  return f(1, 2, 3);
+}
+//This is an untyped function call and is generally best avoided because of the unsafe any return type.
