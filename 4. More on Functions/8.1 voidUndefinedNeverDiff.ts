@@ -1,4 +1,4 @@
-//1. Void: caller ga boleh ngandelin return value
+//1. VOID: caller ga boleh ngandelin return value
 function log(msg: string): void {
   console.log(msg);
 }
@@ -19,4 +19,10 @@ function f(): void {
   return undefined; // OK, no Error
   //undefined adalah absence of value
   //Masih sesuai kontrak void
+}
+
+//2. UNDEFINED: function secara explisit mengembalikan undefined
+function getNothing(): undefined {
+  return undefined; //Wajib return undefined
+  //return; // Error -> coz walaupun return; === return undefined; saat runtime, tapi TS menganggap ini ga explisit -> Error
 }
