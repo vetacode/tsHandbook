@@ -52,4 +52,15 @@ let u: undefined;
 v = undefined; //OK
 u = undefined; //OK
 
-u = v; // Error: Type 'void' is not assignable to type 'undefined'.-> void !== undefined
+// u = v; // Error: Type 'void' is not assignable to type 'undefined'.-> void !== undefined
+
+//3. NEVER: function tidak pernah selesai
+function crash(): never {
+  throw new Error('Boom');
+}
+
+function infinite(): never {
+  while (true) {}
+}
+
+//Keduanya ga pernah return, never reach end
