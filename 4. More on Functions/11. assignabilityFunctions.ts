@@ -28,3 +28,14 @@ console.log(
   })
 );
 console.log(dst.push(...src)); //16
+
+//when a literal function definition has a void return type, that function must not return anything.
+function f4(): void {
+  // @ts-expect-error
+  return true;
+}
+
+const f5 = function (): void {
+  // @ts-expect-error
+  return true;
+};
