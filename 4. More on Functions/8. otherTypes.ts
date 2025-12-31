@@ -12,7 +12,7 @@ function noop() {
 //    function types are considered to be objects in TypeScript.
 
 //3. unknown: represents any value.
-//    similar to the 'any' type, but 'unknown' is safer coz it is illegal to do anything with unknown value (the TS will always scream)
+//    unknown mirip any, tapi lebih aman karena TypeScript melarang penggunaan value tersebut sebelum dilakukan type narrowing.
 //    'any' will turn off type checking, 'unknown' type checking tetap aktif
 
 function f1(a: any) {
@@ -30,7 +30,7 @@ function f3(a: unknown) {
   }
 }
 
-//unknown berguna untuk function yang tidak bisa menjamin bentuk return value, sehingga caller dipaksa melakukan validasi terlebih dahulu.
+//unknown cocok digunakan sebagai return type untuk function yang tidak bisa menjamin bentuk data (misalnya JSON.parse), sehingga caller dipaksa melakukan validasi tipe terlebih dahulu sebelum menggunakannya.
 // declare const someRandomString: string;
 // ---cut---
 
