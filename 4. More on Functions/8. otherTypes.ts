@@ -1,10 +1,15 @@
 //1. void represents the return value of functions which don’t return a value.
 //    void is not the same as undefined.
-// The inferred return type is void
+//    The inferred return type is void
 function noop() {
   //function noop(): void
   return;
 }
+
+//NOTES:
+// void adalah type space bukan function (value space)
+// contoh type space: string, number, () => void
+// contoh value space: 'hello', 123, () => {}
 
 //2. object: a special type refers to any value that isn’t a primitive (string, number, bigint, boolean, symbol, null, or undefined)
 //    object is not Object. Always use object!
@@ -29,7 +34,7 @@ function f3(a: unknown) {
     // proses narrowing: null jg object, jd hrs disaring. hasilnya adalah TS tau a: object & { b: unknown }
     //so kita perlu info TS bahwa 'b' adlh function
     (a as { b: () => void }).b(); //hasilnya adlh: a adalah object yang punya method b berupa function (pake type assertion 'as')
-    console.log(a);
+    console.log(a); //{ b: [Function: b] }
   }
   //OK setelah narrowing
 }
@@ -51,6 +56,5 @@ function safeParse(s: string): unknown {
 }
 
 // Need to be careful with 'obj'!
-const obj = safeParse(someRandomString); //const obj: unknown => Hati2 dgn obj! boleh menyimpannya di variable
-// ga boleh menggunakan obj tanpa narrowing
+const obj = safeParse(someRandomString); //const obj: unknown => Hati2 dgn obj! boleh menyimpannya di variable, tapi ga boleh menggunakan obj tanpa narrowing
 console.log(obj);
