@@ -2,7 +2,7 @@
 //    void is not the same as undefined.
 //    The inferred return type is void
 function noop() {
-  //function noop(): void
+  //function noop(): void -> ini adlh hanya deskripsi bentuk function yg boleh mengembalikan type apa saja
   return;
 }
 
@@ -18,6 +18,26 @@ type Car = { speed: number };
 //yg benar:
 const fastCar = { speed: 250 };
 console.log(fastCar); //{ speed: 250 }
+
+//NOTES:
+// void (pada function type assignment, bukan pada function implementation) bukan berarti "return nothing", tapi: caller tidak peduli return value:
+function tryVoid(): void {
+  //ini function implementation -> ketat, return harus sesuai dgn type return yg di declare (void)
+  return 123; //return dgn 'makna' akan error.
+  // return undefined; -> aman
+  // return; -> aman
+}
+
+const func: () => void = () => {
+  // void di callback/function type -> longgar
+  return 123; //aman tidak error
+};
+
+function func2(): () => void {
+  return 123;
+}
+
+let x = func2();
 
 //2. object: a special type refers to any value that isn’t a primitive (string, number, bigint, boolean, symbol, null, or undefined)
 //    object is not Object. Always use object!
@@ -52,6 +72,13 @@ f3({
     console.log('Printing f3');
   },
 });
+
+//OR
+f3({ b: function () {} });
+
+//OR
+f3({ b() {} });
+//b -> value function -> typescript mencocokkan dgn () => void -> cocok -> tdk error
 
 console.log(f3); //[Function: f3]
 
