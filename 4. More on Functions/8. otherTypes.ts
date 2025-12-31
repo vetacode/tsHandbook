@@ -98,3 +98,20 @@ function safeParse(s: string): unknown {
 // Need to be careful with 'obj'!
 const obj = safeParse(someRandomString); //const obj: unknown => Hati2 dgn obj! boleh menyimpannya di variable, tapi ga boleh menggunakan obj tanpa narrowing
 console.log(obj);
+
+//4. never
+//Some functions never return a value:
+function fail(msg: string): never {
+  throw new Error(msg);
+}
+
+//never also appears when TypeScript determines there’s nothing left in a union.
+function fn(x: string | number) {
+  if (typeof x === 'string') {
+    // do something
+  } else if (typeof x === 'number') {
+    // do something else
+  } else {
+    x; // has type 'never'!
+  }
+}
