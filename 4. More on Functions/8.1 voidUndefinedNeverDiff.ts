@@ -88,3 +88,8 @@ function area(s: Shape) {
     //klo nambah shape baru, TS langsung error.
   }
 }
+
+//Edge case: never ga bs di assign apapun
+let n: never;
+n = 1; //Type '1' is not assignable to type 'never'.
+n = undefined; //Type 'undefined' is not assignable to type 'never'.
