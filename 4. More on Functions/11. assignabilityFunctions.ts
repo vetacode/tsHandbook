@@ -31,11 +31,22 @@ console.log(dst.push(...src)); //16
 
 //when a literal function definition has a void return type, that function must not return anything.
 function f4(): void {
-  // @ts-expect-error
-  return true;
+  return true; // Error: Type 'boolean' is not assignable to type 'void'.
 }
 
 const f5 = function (): void {
   // @ts-expect-error
-  return true;
+  return true; //ts not screaming coz above annotation
+};
+
+//di TypeScript, explicit void annotation -> dilarang return value.
+// void berarti “nilai return-nya tidak boleh digunakan” / di ignored.
+
+//Kasus dimana VOID boleh retrun value:
+// pada Contextual void:
+
+const func: () => void = () => {
+  return true; //Aman, ga error, coz:
+  //void berasal dari context type
+  // TS artinya: “nilai return akan diabaikan”
 };
