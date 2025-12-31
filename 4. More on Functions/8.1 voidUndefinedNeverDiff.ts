@@ -44,3 +44,12 @@ if (result === undefined) {
   result = 0; //fallback, return value result menjadi 0
 }
 console.log(result); // 0
+
+//Edge case2: assignability
+let v: void;
+let u: undefined;
+
+v = undefined; //OK
+u = undefined; //OK
+
+u = v; // Error: Type 'void' is not assignable to type 'undefined'.-> void !== undefined
