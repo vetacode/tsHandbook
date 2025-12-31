@@ -41,15 +41,19 @@ function f3(a: unknown) {
   if (typeof a === 'object' && a !== null && 'b' in a) {
     // proses narrowing: null jg object, jd hrs disaring. hasilnya adalah TS tau a: object & { b: unknown }
     //so kita perlu info TS bahwa 'b' adlh function
-    (a as { b: () => void }).b(); //hasilnya adlh: a adalah object yang punya method b berupa function (pake type assertion 'as')
+    (a as { b: () => void }).b(); //hasilnya: a adalah object yang punya method b berupa function (pake type assertion 'as')
     console.log(a); //{ b: [Function: b] }
   }
   //OK setelah narrowing
 }
 
-f3({ b: () => {} });
+f3({
+  b: () => {
+    console.log('Printing f3');
+  },
+});
 
-console.log(f3);
+console.log(f3); //[Function: f3]
 
 //unknown cocok digunakan sebagai return type untuk function yang tidak bisa menjamin bentuk data (misalnya JSON.parse), sehingga caller dipaksa melakukan validasi tipe terlebih dahulu sebelum menggunakannya.
 // declare const someRandomString: string;
