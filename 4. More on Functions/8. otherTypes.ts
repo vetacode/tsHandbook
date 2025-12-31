@@ -13,21 +13,36 @@ function noop() {
 
 //3. unknown: represents any value.
 //    similar to the 'any' type, but 'unknown' is safer coz it is illegal to do anything with unknown value (the TS will always scream)
+//    'any' will turn off type checking, 'unknown' type checking tetap aktif
 
 function f1(a: any) {
-  a.b(); // OK
+  a.b(); // OK (ga dicek sama TS)
 }
 function f2(a: unknown) {
   a.b();
-  // 'a' is of type 'unknown'.
+  // Error: 'a' is of type 'unknown'.
 }
 
-//unknown bisa berguna saat kita ingin describing function types yg me returns unknown value
-declare const someRandomString: string;
+//Unknown will not scream after type narrowing
+function f3(a: unknown) {
+  if (typeof a === 'object' && a !== null && 'b' in a) {
+    (a as { b: () => void }).b(); // OK setelah narrowing
+  }
+}
+
+//unknown berguna untuk function yang tidak bisa menjamin bentuk return value, sehingga caller dipaksa melakukan validasi terlebih dahulu.
+// declare const someRandomString: string;
 // ---cut---
+
+const someRandomString: string = 'wireMagic';
+
 function safeParse(s: string): unknown {
-  return JSON.parse(s);
+  return JSON.parse(s); //JSON.parse secara runtime bisa return apa saja
+  //Kalau dikembalikan any, caller bisa langsung salah pakai
+  //Dengan unknown, memaksa caller hati-hati coz TS bisa scream
 }
 
 // Need to be careful with 'obj'!
-const obj = safeParse(someRandomString); //const obj: unknown => Hati2 dgn obj! return unknown tapi ga ada error
+const obj = safeParse(someRandomString); //const obj: unknown => Hati2 dgn obj! boleh menyimpannya di variable
+// ga boleh menggunakan obj tanpa narrowing
+console.log(obj);
