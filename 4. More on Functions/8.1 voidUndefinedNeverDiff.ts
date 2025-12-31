@@ -93,3 +93,16 @@ function area(s: Shape) {
 let n: never;
 n = 1; //Type '1' is not assignable to type 'never'.
 n = undefined; //Type 'undefined' is not assignable to type 'never'.
+
+//Side by side comparison
+function f1(): void {
+  return undefined; // OK
+}
+
+function f2(): undefined {
+  return undefined; // OK
+}
+
+function f3(): never {
+  throw new Error();
+}
