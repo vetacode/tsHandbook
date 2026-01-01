@@ -48,5 +48,12 @@ const f5 = function (): void {
 const func: () => void = () => {
   return true; //Aman, ga error, coz:
   //void berasal dari context type
-  // TS artinya: “nilai return akan diabaikan”
+  // TS mengartikan: nilai return akan diabaikan
 };
+
+//Bedah bertahap:
+//const func: () => void
+//Artinya: “Saya butuh sebuah function yang jika dipanggil, hasilnya TIDAK BOLEH digunakan.”
+
+// = () => { return true; }
+// ini adalah implementasi dari func tsb yg mengembalikan nilai true, yg akan diabaikan
