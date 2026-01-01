@@ -26,7 +26,7 @@ console.log(
   src.forEach((el) => {
     return dst.push(el);
   })
-);
+); //undefined
 console.log(dst.push(...src)); //16
 
 //when a literal function definition has a void return type, that function must not return anything.
@@ -36,8 +36,10 @@ function f4(): void {
 
 const f5 = function (): void {
   // @ts-expect-error
-  return true; //ts not screaming coz above annotation
+  return true; //TS is not screaming coz // @ts-expect-error annotation, TS sdh tau & mengharapkan ada error, jd ga teriak lg
 };
+
+//NOTE: @ts-expect-error (Abaikan error HANYA jika error memang ada) !== @ts-ignore (Abaikan error apa pun, walaupun tidak ada error)
 
 //di TypeScript, explicit void annotation -> dilarang return value.
 // void berarti “nilai return-nya tidak boleh digunakan” / di ignored.
