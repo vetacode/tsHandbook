@@ -6,7 +6,6 @@ console.log(greet({ name: 'Rina', age: 18 })); // Hello Rina, Your age is 18
 console.log(greet({ name: '', age: 18 })); // Hello , Your age is 18
 
 //OR using interface
-
 interface Person {
   name: string;
   age: number;
