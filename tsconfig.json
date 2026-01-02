@@ -21,7 +21,7 @@
     "declarationMap": true,
 
     // Stricter Typechecking Options
-    "noUncheckedIndexedAccess": true,
+    "noUncheckedIndexedAccess": false, //set true klo banyak data external, project besar, domain critical
     "exactOptionalPropertyTypes": true,
 
     // Style Options
