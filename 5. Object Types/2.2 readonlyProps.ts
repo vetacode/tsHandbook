@@ -84,7 +84,7 @@ function updateAge(home: Home) {
   /*...*/
 }
 
-//as const: freeze nilai literal
+//as const: deepReadonly + freeze nilai literal
 //menjadi deep readonly, semuanya readonly (deep immutable)
 //menjadi literal type (as is, not number or string)
 //cocok digunakan untuk constants/config
@@ -105,3 +105,8 @@ const ROUTES = {
   HOME: '/',
   PROFILE: '/profile',
 } as const;
+
+//NOTES:
+//Readonly<T>     // "jangan ganti property ini"
+// DeepReadonly<T> // "jangan ubah APAPUN"
+// as const        // "nilai ini mutlak & readonly"
