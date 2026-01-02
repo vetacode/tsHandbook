@@ -8,3 +8,5 @@ function callMeMaybe(callback: () => void) {
 
 // Expected an error because 'doSomething' returns number, but 'callMeMaybe' expects void-returning function
 callMeMaybe(doSomething);
+
+console.log(callMeMaybe); //[function: callMeMaybe]
