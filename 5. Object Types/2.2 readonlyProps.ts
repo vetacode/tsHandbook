@@ -79,8 +79,14 @@ function visit(home: Home) {
   home.resident = {} as any; // Error: Cannot assign to 'resident' because it is a read-only property.
 }
 
+//readonly untuk public API
+function updateAge(home: Home) {
+  /*...*/
+}
+
 //as const: freeze nilai literal
 //menjadi deep readonly, semuanya readonly (deep immutable)
+//menjadi literal type (as is, not number or string)
 //cocok digunakan untuk constants/config
 const home = {
   resident: {
@@ -93,3 +99,9 @@ console.log(home.resident.name); //Eska
 console.log(home.resident.age); //40
 
 home.resident.age++; //error: Cannot assign to 'age' because it is a read-only property.
+
+//as const untuk CONFIG
+const ROUTES = {
+  HOME: '/',
+  PROFILE: '/profile',
+} as const;
