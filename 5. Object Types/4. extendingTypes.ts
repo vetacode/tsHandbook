@@ -6,6 +6,7 @@ interface BasicAddress {
   postalCode: string;
 }
 
+//obsolete way
 interface AddressWithUnit {
   name?: string;
   unit: string;
@@ -16,14 +17,6 @@ interface AddressWithUnit {
 }
 
 //Solution
-interface BasicAddress {
-  name?: string;
-  street: string;
-  city: string;
-  country: string;
-  postalCode: string;
-}
-
 interface AddressWithUnit extends BasicAddress {
   unit: string;
 }
