@@ -23,3 +23,7 @@ console.log(createSquare(config)); //{ color: 'red', area: 10000 } -> OK
 //SOLUSI: bypass pake type assertion
 let mySquare3 = createSquare({ colour: 'blue', width: 100 } as SquareConfig);
 let mySquare2 = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
+
+let squareOptions = { colour: 'red' };
+let mySquare4 = createSquare(squareOptions);
+// Type '{ colour: string; }' has no properties in common with type 'SquareConfig'.
