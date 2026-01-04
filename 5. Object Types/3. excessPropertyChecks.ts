@@ -19,3 +19,7 @@ let mySquare = createSquare({ colour: 'blue', width: 100 });
 //Variable biasa → tidak dicek ketat
 const config = { colour: 'blue', width: 100 };
 console.log(createSquare(config)); //{ color: 'red', area: 10000 } -> OK
+
+//SOLUSI: bypass pake type assertion
+let mySquare3 = createSquare({ colour: 'blue', width: 100 } as SquareConfig);
+let mySquare2 = createSquare({ width: 100, opacity: 0.5 } as SquareConfig);
