@@ -108,3 +108,54 @@ function setContents(box: { contents: any }, newContents: any) {
   console.log(setContents({ contents: 100 }, 500)); //I say 500, and you also reply 500
   console.log(setContents({ contents: true }, false)); //I say false, and you also reply false
 }
+{
+  interface Box<Type> {
+    contents: Type;
+  }
+
+  interface Apple {
+    // ....
+  }
+
+  // Same as '{ contents: Apple }'.
+  type AppleBox = Box<Apple>;
+  //      ^ type AppleBox = {
+  //             contents: Apple;
+  //        }
+}
+
+//type aliases, unlike interfaces, can describe more than just object types
+//with type aliases we can use to write other kinds of generic helper types:
+type OrNull<Type> = Type | null;
+const officeName: OrNull<string> = 'Menara Juleha';
+const officeNull: OrNull<null> = null;
+let homeNum: OrNull<number>;
+homeNum = 20; //OK
+homeNum = null; //Aman
+
+type OneOrMany<Type> = Type | Type[];
+function codingTimes(sessions: OneOrMany<string>) {
+  if (Array.isArray(sessions)) {
+    sessions.forEach((session) => console.log(session));
+  }
+  console.log(sessions);
+}
+codingTimes(['pagi', 'siang', 'sore', 'malam']);
+
+type OneOrManyOrNull<Type> = OrNull<OneOrMany<Type>>;
+//              ^ type OneOrManyOrNull<Type> = OneOrMany<Type> | null
+
+type OneOrManyOrNullStrings = OneOrManyOrNull<string>;
+//              ^ type OneOrManyOrNullStrings = OneOrMany<string> | null
+
+// NOTES:
+//interface → hanya untuk object shape
+//type → bisa untuk:
+// union (A | B)
+// intersection (A & B)
+// primitive
+// tuple
+// conditional type
+// helper type generic (seperti contoh ini)
+
+//Inilah alasan kenapa helper type hampir selalu pakai type, bukan interface.
