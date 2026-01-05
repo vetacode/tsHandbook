@@ -54,3 +54,21 @@ if (typeof x.contents === 'number') {
 //best practice
 const val = x.contents;
 typeof val === 'number' ? console.log(val * 2) : console.log(val.toUpperCase());
+
+//using generic type is same. as declaring the specific type with flexibility
+{
+  interface Box<Type> {
+    contents: Type;
+  }
+  interface StringBox {
+    contents: string;
+  }
+
+  let boxA: Box<string> = { contents: 'hello' };
+  boxA.contents;
+  //       ^ (property) Box<string>.contents: string
+
+  let boxB: StringBox = { contents: 'world' };
+  boxB.contents;
+  //       ^(property) StringBox.contents: string
+}
