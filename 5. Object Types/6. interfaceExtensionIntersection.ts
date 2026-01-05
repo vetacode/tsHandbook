@@ -36,3 +36,14 @@ declare const staffer: Staff;
 staffer.name;
 //        ^ (property) name: never
 // coz Staff would require the name property to be both a string and a number
+
+interface Human1 {
+  name: string;
+}
+interface Human2 {
+  age: number;
+}
+
+interface Humanus extends Human1, Human2 {
+  height: number;
+}
