@@ -137,16 +137,23 @@ type OneOrMany<Type> = Type | Type[];
 function codingTimes(sessions: OneOrMany<string>) {
   if (Array.isArray(sessions)) {
     sessions.forEach((session) => console.log(session));
+  } else {
+    console.log(sessions);
   }
-  console.log(sessions);
 }
 codingTimes(['pagi', 'siang', 'sore', 'malam']);
+codingTimes('subuh');
 
+//menggabungkan helper types
 type OneOrManyOrNull<Type> = OrNull<OneOrMany<Type>>;
 //              ^ type OneOrManyOrNull<Type> = OneOrMany<Type> | null
-
 type OneOrManyOrNullStrings = OneOrManyOrNull<string>;
 //              ^ type OneOrManyOrNullStrings = OneOrMany<string> | null
+let OneOrManyOrNullStrings: OneOrManyOrNull<string>;
+OneOrManyOrNullStrings = 'Rumah'; //OK
+OneOrManyOrNullStrings = ['Rumah', 'Umah', 'Omah']; //OK
+OneOrManyOrNullStrings = null; //OK
+// OneOrManyOrNullStrings = 100; //Error: Type '100' is not assignable to type 'OneOrManyOrNull<string>'.
 
 // NOTES:
 //interface → hanya untuk object shape
