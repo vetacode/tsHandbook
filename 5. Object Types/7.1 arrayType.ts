@@ -3,7 +3,7 @@ function doSomething(value: Array<string>) {
   // ...
 }
 
-let myArray: string[] = ['hello', 'world'];
+let myArray: string[] = ['hello', 'world']; //typescript membacanya: let myArray: Array<string> = ['hello', 'world'];
 
 // either of these work!
 doSomething(myArray);
