@@ -71,3 +71,15 @@ s2.pop; //ada, dan return number(bukan undefined)
 type Weird<T> = {
   pop?(): T | undefined;
 };
+
+interface ExArray<T> {
+  push(...items: T[]): number;
+}
+
+const arr2: ExArray<number> = [50, 100];
+const len2 = arr2.push(1, 2, 3, 4);
+console.log(len2); //6
+
+const arr3: ExArray<string> = [];
+const len3 = arr3.push('arei', 'aroi', 'arai');
+console.log(len3); //3
