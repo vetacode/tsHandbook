@@ -109,3 +109,18 @@ numbers.add(2); //ignored (coz duplikat)
 
 console.log(numbers); //Set(2) { 1, 2 }
 console.log(numbers.has(1)); //true
+
+//3. Promise<T> -> hasil async in the future
+//Promise mereprentasikan value yg blm ada skrg, tapi akan ada nanti -> T = tipe hasil resolve
+const promiseNumber: Promise<number> = new Promise((resolve) => {
+  resolve(50);
+});
+console.log(promiseNumber); //Promise { 50 }
+
+//dengan async:
+async function getName(): Promise<string> {
+  return 'Alibaba';
+}
+console.log(getName()); //Promise { 'Alibaba' }
+
+// Notes: generic memastikan hasil async tetap aman secara tipe (Promise<string> hasilnya pasti string, etc)
