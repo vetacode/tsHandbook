@@ -83,3 +83,29 @@ console.log(len2); //6
 const arr3: ExArray<string> = [];
 const len3 = arr3.push('arei', 'aroi', 'arai');
 console.log(len3); //3
+
+// NOTES
+// Map, Set, dan Promise disebut “generic” karena strukturnya tidak terikat pada satu tipe data tertentu.
+// Mereka bisa bekerja dengan tipe apa pun, dan tipe tersebut “diisi” saat kita menggunakannya.
+
+//1. Map<K, V> -> Key-Value pair
+//Map menyimpan data dalam bentuk: K = tipe Key, dan V = tipe Value
+const ageMap: Map<string, number> = new Map();
+
+ageMap.set('Andi', 25);
+ageMap.set('Budi', 35);
+
+let andiAge = ageMap.get('Andi');
+//      ^ let andiAge: number | undefined
+console.log(andiAge); //25
+
+//2. Set<T> -> kumpulan unique value
+//Set menyimpan value tanpa duplikat: T = tipe tiap elemen di dlm set
+const numbers: Set<number> = new Set();
+
+numbers.add(1);
+numbers.add(2);
+numbers.add(2); //ignored (coz duplikat)
+
+console.log(numbers); //Set(2) { 1, 2 }
+console.log(numbers.has(1)); //true
