@@ -115,5 +115,25 @@ function readButtonInput(...args: [string, number, ...boolean[]]) {
 function readButtonInput2(name: string, version: number, ...input: boolean[]) {
   // ...
 }
-// NOTES: This is handy when you want to take a variable number of arguments with a rest parameter, and you need a minimum number of elements, but you don’t want to introduce intermediate variables.
+// NOTES: This is handy when you want to take a variable number of arguments with a rest parameter, and you need a minimum number of elements, but you don’t want to introduce intermediate variables (variable perantara).
+function fn(name: string, version: number, ...input: boolean[]) {
+  const args = [name, version, ...input]; // ← variabel perantara
+}
+
 //Tuple dengan optional / rest element dipakai supaya bentuk argumen fungsi bisa dimodelkan sebagai satu kesatuan, tanpa harus memecahnya jadi parameter satu-satu.
+
+//contoh di project:
+type ButtonArgs = [string, number, ...boolean[]];
+
+function readButtonInput3(...args: ButtonArgs) {
+  sendToServer(args);
+  return args;
+}
+
+function sendToServer(args: ButtonArgs) {
+  const [name, version] = args; // aman
+  return [name, version];
+}
+
+let sendData = readButtonInput3('halo', 30, true, false);
+console.log(sendData); //[ 'halo', 30, true, false ]
