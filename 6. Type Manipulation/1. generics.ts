@@ -164,3 +164,37 @@ if (user) {
   let genClassStr = new GenericClass<string>('tas ', (x, y) => x + y);
   console.log(genClassStr.add(genClassStr.zeroVal, 'test')); //tas test
 }
+
+{
+  //5. GENERIC CONSTRAINTS
+  //Problem:
+  function loggingIdentity<Type>(arg: Type): Type {
+    console.log(arg.length);
+    //                ^ Property 'length' does not exist on type 'Type'.
+    return arg;
+  }
+  //Solution: extends constraints
+  interface Len {
+    length: number;
+  }
+  function loggingIdentity2<T extends Len>(arg: T): T {
+    console.log(arg.length); //aman, coz type sdh di constraints dgn interface Len
+    return arg;
+  }
+
+  //<T extends Len> artinya T boleh type apa aja asal MINIMAL punya properti .length.
+  //so, T hanya dibatasi (constrained) supaya pasti punya .length
+
+  //penggunaanya:
+  loggingIdentity2(10); //Error: Argument of type 'number' is not assignable to parameter of type 'Len'. -> number ga punya property length
+  //yang bener:
+  loggingIdentity2({ length: 10, value: 3 }); //10 -> ini adalah custom object
+  //kenapa ada tambahan props value boleh:
+  // {
+  //   length: number; // memenuhi constraint
+  //   value: number; // extra property boleh
+  // }
+
+  loggingIdentity2('hello'); //5 -> Aman, string 'hello' punya length 5
+  loggingIdentity2([1, 2, 3]); //3 -> Aman, array ini punya length 3
+}
