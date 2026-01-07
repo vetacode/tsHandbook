@@ -20,7 +20,7 @@ if (user) {
 }
 
 {
-  //1. Hello world of Generics
+  //1. HELLO WORLD OF GENERICS
   //Identity function generic
   function identity<T>(arg: T): T {
     return arg;
@@ -37,7 +37,7 @@ if (user) {
 }
 
 {
-  //2. Working with Generic Type Variables
+  //2. WORKING WITH GENERIC TYPE VARIABLES
   function arrLen<T>(...args: T[]): T[] {
     if (args.every((arg) => typeof arg === 'number')) {
       console.log(`Semua number, dengan length: ${args.length}`);
@@ -62,7 +62,7 @@ if (user) {
 }
 
 {
-  //3. Generic Types
+  //3. GENERIC TYPES
   // The type of generic functions is just like those of non-generic functions, with the type parameters listed first, similarly to function declarations:
 
   function identity<T>(arg: T): T {
@@ -135,4 +135,29 @@ if (user) {
   }
 
   let myIdentity5: GenericIdentityFn<number> = identity5;
+}
+
+{
+  //4. GENERIC CLASSES
+  class GenericClass<T> {
+    zeroVal: T;
+    add: (x: T, y: T) => T;
+    // ^Error compile time: Property 'add' has no initializer and is not definitely assigned in the constructor.
+
+    //solusi hilangin error: harus initialize assigned pke constructor
+    constructor(zeroVal: T, add: (x: T, y: T) => T) {
+      this.zeroVal = zeroVal;
+      this.add = add;
+    }
+  }
+
+  let genClass = new GenericClass<number>();
+  console.log(genClass); //GenericClass { zeroVal: undefined, add: undefined }
+
+  genClass.zeroVal = 0;
+  genClass.add = function (x, y) {
+    return x + y;
+  };
+
+  console.log(genClass); //GenericClass { zeroVal: 0, add: [Function (anonymous)] }
 }
