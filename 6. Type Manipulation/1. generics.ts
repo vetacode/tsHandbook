@@ -19,41 +19,45 @@ if (user) {
   console.log('User Not Found');
 }
 
-//1. Hello world of Generics
-//Identity function generic
-function identity<T>(arg: T): T {
-  return arg;
-}
-let outputNum = identity<number>(20);
-console.log(outputNum); //20
-
-let outputStr = identity<string>('myString');
-//    ^  let outputStr: string
-
-//Type argument inference
-let outputStr2 = identity('myString');
-//    ^ let output: string
-
-//2. Working with Generic Type Variables
-function arrLen<T>(...args: T[]): T[] {
-  if (args.every((arg) => typeof arg === 'number')) {
-    console.log(`Semua number, dengan length: ${args.length}`);
-  } else {
-    console.log(args);
+{
+  //1. Hello world of Generics
+  //Identity function generic
+  function identity<T>(arg: T): T {
+    return arg;
   }
-  return args;
-}
-arrLen<number>(100, 10, 25);
-arrLen<string>('apa', 'aba', 'ata');
-// let arr1 = arrLen<number>(100);
-// console.log(arr1);
+  let outputNum = identity<number>(20);
+  console.log(outputNum); //20
 
-//versi lebih aman karena tdk return apapun (side effect function only)
-function arrLen2<T>(...args: T[]): void {
-  if (args.every((arg) => typeof arg === 'number')) {
-    console.log(`Semua number, dengan length: ${args.length}`);
-  } else {
-    console.log(args);
+  let outputStr = identity<string>('myString');
+  //    ^  let outputStr: string
+
+  //Type argument inference
+  let outputStr2 = identity('myString');
+  //    ^ let output: string
+}
+
+{
+  //2. Working with Generic Type Variables
+  function arrLen<T>(...args: T[]): T[] {
+    if (args.every((arg) => typeof arg === 'number')) {
+      console.log(`Semua number, dengan length: ${args.length}`);
+    } else {
+      console.log(args);
+    }
+    return args;
+  }
+  arrLen<number>(100, 10, 25);
+  arrLen<string>('apa', 'aba', 'ata');
+  // let arr1 = arrLen<number>(100);
+  // console.log(arr1);
+
+  //versi lebih aman karena tdk return apapun (side effect function only)
+  function arrLen2<T>(...args: T[]): void {
+    if (args.every((arg) => typeof arg === 'number')) {
+      console.log(`Semua number, dengan length: ${args.length}`);
+    } else {
+      console.log(args);
+    }
   }
 }
 
@@ -69,4 +73,66 @@ function arrLen2<T>(...args: T[]): void {
   // yang punya type parameter: T,
   // menerima arg: T,
   // dan mengembalikan T.
+  //<T>(arg: T) => T -> ini adalah tipe fungsi, hanya ada di compile time, ga ada di runtime js
+  console.log(identity === myIdentity); //true
+
+  //Type generic function bisa juga dituliskan sebagai call signature di dalam object type:
+  function identity2<T>(arg: T): T {
+    return arg;
+  }
+  let myIdentity2: { <T>(arg: T): T } = identity2;
+  //{ <T>(arg: T): T } -> ini adalah object type
+  //artinya: myIdentity bertipe sebuah object yang bisa dipanggil (callable object) -> call signature: deskripsi “bagaimana sebuah value bisa dipanggil seperti function”
+  //contoh sederhana call signature non generic:
+  interface Fn {
+    (x: number): number;
+  }
+  //artinya: Fn adlh object type yg bisa dipanggil, terima number & return number
+  let f: Fn = (x) => x * 5;
+  console.log(f(10)); //50
+
+  //contoh generic call signature:
+  interface GenCall {
+    <T>(arg: T): T;
+  }
+  //Object type ini punya call signature
+  //artinya: obj type ini bisa dipanggil sbg function, untuk semua tipe: T, terima arg: T dan return: T.
+  //makna nya sama sperti function type: (<Type>(arg: Type) => Type)
+
+  //penggunaan bisa tambah property
+
+  interface GenFn {
+    <T>(arg: T): T;
+  }
+  function identity3<T>(arg: T): T {
+    return arg;
+  }
+
+  identity3.description = 'it can add new props to the obj';
+
+  let myIdentity3: GenFn = identity3; //Aman, Karena TypeScript tidak melarang value punya property lebih banyak dari yang diminta tipe.
+
+  //Tapi kalo value < Type required -> Error
+  interface GenFn2 {
+    <T>(arg: T): T;
+    description: string;
+  }
+
+  function identity4<T>(arg: T): T {
+    return arg;
+  }
+
+  let myIdentity4: GenFn2 = identity4;
+  //      ^ Property 'description' is missing in type '<T>(arg: T) => T' but required in type 'GenFn2'.
+
+  //We can also move the generic parameter to be a parameter of the whole interface.
+  interface GenericIdentityFn<T> {
+    (arg: T): T;
+  }
+
+  function identity5<T>(arg: T): T {
+    return arg;
+  }
+
+  let myIdentity5: GenericIdentityFn<number> = identity5;
 }
