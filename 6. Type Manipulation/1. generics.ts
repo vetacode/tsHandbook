@@ -151,8 +151,8 @@ if (user) {
     }
   }
 
-  let genClass = new GenericClass<number>();
-  console.log(genClass); //GenericClass { zeroVal: undefined, add: undefined }
+  let genClass = new GenericClass<number>(0, (x, y) => x + y);
+  console.log(genClass); //GenericClass { zeroVal: 0, add: [Function (anonymous)] }
 
   genClass.zeroVal = 0;
   genClass.add = function (x, y) {
@@ -160,4 +160,7 @@ if (user) {
   };
 
   console.log(genClass); //GenericClass { zeroVal: 0, add: [Function (anonymous)] }
+
+  let genClassStr = new GenericClass<string>('tas ', (x, y) => x + y);
+  console.log(genClassStr.add(genClassStr.zeroVal, 'test')); //tas test
 }
