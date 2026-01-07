@@ -198,3 +198,24 @@ if (user) {
   loggingIdentity2('hello'); //5 -> Aman, string 'hello' punya length 5
   loggingIdentity2([1, 2, 3]); //3 -> Aman, array ini punya length 3
 }
+
+{
+  //6. USING TYPE PARAMETERS IN GENERIC CONSTRAINTS
+}
+
+{
+  //7. USING CLASS TYPES IN GENERICS
+  //It is placing a constraint between the two types, to ensure that we’re not accidentally grabbing a property that does not exist on the obj
+  function getProperty<T, K extends keyof T>(obj: T, key: K) {
+    return obj[key]; //value dari computed key of object
+  }
+
+  let x = { a: 1, b: 2, c: 3, d: 4 };
+  //K extends keyof T -> constraints (kontrak keras antara obj dan key), artinya: K harus merupakan salah satu key dari T
+  //keyof T = "a" | "b" | "c" | "d" -> K boleh berupa "a", "b", "c", atau "d", ga boleh string lain
+  //TypeScript memaksa key pasti valid untuk obj
+
+  console.log(getProperty(x, 'a')); //1
+  getProperty(x, 'm');
+  //              ^ Argument of type '"m"' is not assignable to parameter of type '"a" | "b" | "c" | "d"'.
+}
