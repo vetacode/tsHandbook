@@ -338,4 +338,35 @@ interface Api<T, E = Error> {
 {
   //9.VARIANCE ANNOTATION
   //disclaimers: This is an advanced feature for solving a very specific problem, and should only be used in situations where you’ve identified a reason to use it
+
+  //Covariance and contravariance are type theory terms that describe what the relationship between two generic types is. Here’s a brief primer on the concept.
+  //basic relation
+  class Animal {}
+  class Cat extends Animal {}
+
+  //Covariance
+  interface Producer<T> {
+    make(): T;
+  }
+  // Producer cuma “menghasilkan” T
+  // Producer<Cat> → bikin Cat
+  // Producer<Animal> → bikin Animal
+  // Producer<Cat> bisa dipakai di tempat Producer<Animal>
+  // Cat → Animal
+  // Producer<Cat> → Producer<Animal>
+
+  //Contravariance
+  interface Consumer<T> {
+    consume: (arg: T) => void;
+  }
+  // Consumer cuma “menerima / memakan” T
+  // Consumer<Cat> → cuma bisa nerima Cat
+  // Consumer<Animal> → bisa nerima Animal apa pun (termasuk Cat)
+  // Consumer<Animal> bisa dipakai di tempat Consumer<Cat>
+  // Cat → Animal
+  // Consumer<Animal> → Consumer<Cat>
+
+  // NOTES:
+  // Function parameters default-nya contravariant
+  // Return type covariant
 }
