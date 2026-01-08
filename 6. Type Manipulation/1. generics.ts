@@ -218,7 +218,7 @@ if (user) {
 
 {
   //7. USING CLASS TYPES IN GENERICS
-  //klo mau buat pabrik dg constructor:
+  //klo mau buat pabrik object dg constructor:
   function create<T>(c: T): T {
     return new c();
     //         ^ This expression is not constructable.
@@ -229,4 +229,47 @@ if (user) {
   function create2<T>(c: { new (): T }): T {
     return new c();
   }
+
+  //{ new (): T } -> ini disebut constructor signature type
+  //artinya: tipe function yg bisa dipanggil dgn new, tanpa argumen, dan menghasilkan instance type: T
+  //jadi c bukan object biasa, tp class/constructor function
+  //factory harus menerima 'constructor' (c: { new (): T }) tapi return 'instance' (new c())
+
+  class Car {
+    wheels = 6;
+  }
+  const car = create2(Car); //-> constructor. car: Car
+  // const car = new Car(); //-> instance. car: Car
+  console.log(car.wheels); //6
+
+  //advanced example using prototype props to infer and constraints
+  class BeeKeeper {
+    hasMask: boolean = true;
+  }
+
+  class ZooKeeper {
+    nametag: string = 'Mikle';
+  }
+
+  class Animal {
+    numLegs: number = 4;
+  }
+
+  class Bee extends Animal {
+    numLegs = 6;
+    keeper: BeeKeeper = new BeeKeeper();
+  }
+
+  class Lion extends Animal {
+    keeper: ZooKeeper = new ZooKeeper();
+  }
+
+  function createInstance<A extends Animal>(c: new () => A): A {
+    return new c();
+  }
+
+  console.log(createInstance(Lion).keeper.nametag); //Mikle
+  console.log(createInstance(Bee).keeper.hasMask); //true
+
+  //This pattern is used to power the mixins design pattern.
 }
