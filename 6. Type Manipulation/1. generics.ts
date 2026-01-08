@@ -334,3 +334,8 @@ interface Api<T, E = Error> {
   //Generic baru WAJIB punya default
   error?: E;
 }
+
+{
+  //9.VARIANCE ANNOTATION
+  //disclaimers: This is an advanced feature for solving a very specific problem, and should only be used in situations where you’ve identified a reason to use it
+}
