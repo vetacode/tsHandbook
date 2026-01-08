@@ -270,6 +270,67 @@ if (user) {
 
   console.log(createInstance(Lion).keeper.nametag); //Mikle
   console.log(createInstance(Bee).keeper.hasMask); //true
-
   //This pattern is used to power the mixins design pattern.
+}
+
+//8. GENERIC PARAMETER DEFAULTS
+type Container<T, U> = {
+  element: T;
+  children: U;
+};
+
+// ---cut---
+declare function create(): Container<HTMLDivElement, HTMLDivElement[]>;
+declare function create<T extends HTMLElement>(element: T): Container<T, T[]>;
+declare function create<T extends HTMLElement, U extends HTMLElement>(
+  element: T,
+  children: U[]
+): Container<T, U[]>;
+
+//With generic parameter defaults we can reduce it to:
+declare function create<
+  T extends HTMLElement = HTMLDivElement,
+  U extends HTMLElement[] = T[]
+>(element?: T, children?: U): Container<T, U>;
+
+//usage:
+const div = create();
+//     ^ const div: Container<HTMLDivElement, HTMLDivElement[]>
+
+const p = create(new HTMLParagraphElement());
+//    ^ const p: Container<HTMLParagraphElement, HTMLParagraphElement[]>
+
+//A generic parameter default follows the following rules:
+//1.Generic yg punya default -> jadi opsional
+type Box<T = string> = { value: T }; //T boleh tidak diisi → otomatis pakai string.
+//2.Generic (wajib) ga boleh setelah generic opsional
+type Example<T = string, U> = {}; // error: Required type parameters may not follow optional type parameters.
+type Example2<T, U = string> = {}; // yang wajib dulu, yang opsional belakangan
+//3.Default type harus sesuai constraint
+type Len<T extends { length: number } = number> = T; //Error: Type 'number' does not satisfy the constraint '{ length: number; }'.
+type Len2<T extends { length: number } = string> = T; // OK: Default harus lolos extends
+//4.Saat pakai generic, cukup isi yang wajib
+type Pair<T, U = number> = [T, U];
+type A = Pair<string>; // [string, number]
+type B = Pair<string, boolean>; // [string, boolean]
+//5.Jika inference gagal → pakai default
+function foo<T = string>(): T {
+  return '' as T;
+}
+const x = foo(); // T = string -> Default = fallback type
+//6.Interface / class hasil merge boleh nambah default
+interface Box2<T> {
+  value: T;
+}
+interface Box2<T = string> {
+  //Merge boleh nambah default ke generic lama
+  label?: string;
+}
+//7.Interface / class hasil merge boleh nambah generic baru (asal ada default)
+interface Api<T> {
+  data: T;
+}
+interface Api<T, E = Error> {
+  //Generic baru WAJIB punya default
+  error?: E;
 }
