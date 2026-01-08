@@ -369,4 +369,43 @@ interface Api<T, E = Error> {
   // NOTES:
   // Function parameters default-nya contravariant
   // Return type covariant
+
+  //In Out Annotation
+  interface Consumer<in T> {
+    consume: (arg: T) => void;
+  }
+  // Secara struktur → memang contravariant
+  // Annotation sesuai kenyataan
+
+  // kapan annotation dipakai/kapan tidak dipakai?
+  // 1. Structural comparison (paling sering) -> jangan pakai annotation
+  // “Isinya cocok atau tidak?”
+  const p: Producer<string | number> = {
+    make(): number {
+      return 42;
+    },
+  };
+  // Annotation in out DIABAIKAN
+  // Variance annotation TIDAK BERLAKU di sini
+
+  //2. Instantiation-based comparison (lebih jarang)
+  // “Producer<T> dibandingkan dengan Producer<U>”
+
+  interface Consumering<in T> {
+    consuming(arg: T): void;
+  }
+
+  let animalConsumer: Consumering<Animal>;
+  let catConsumer: Consumering<Cat>;
+
+  animalConsumer = catConsumer; // ERROR
+  catConsumer = animalConsumer; // OK (contravariant)
+  // TS melihat: Consumer<T>
+  // Annotation in T → contravariant
+  // Consumer<Animal> → Consumer<Cat>
+
+  // IMPORTANT NOTES:
+  // Jika kamu tidak yakin 100%, JANGAN pakai in / out
+  // TypeScript Sudah pintar, Jarang salah
+  // Lebih aman tanpa annotation
 }
