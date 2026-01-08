@@ -201,10 +201,6 @@ if (user) {
 
 {
   //6. USING TYPE PARAMETERS IN GENERIC CONSTRAINTS
-}
-
-{
-  //7. USING CLASS TYPES IN GENERICS
   //It is placing a constraint between the two types, to ensure that we’re not accidentally grabbing a property that does not exist on the obj
   function getProperty<T, K extends keyof T>(obj: T, key: K) {
     return obj[key]; //value dari computed key of object
@@ -218,4 +214,19 @@ if (user) {
   console.log(getProperty(x, 'a')); //1
   getProperty(x, 'm');
   //              ^ Argument of type '"m"' is not assignable to parameter of type '"a" | "b" | "c" | "d"'.
+}
+
+{
+  //7. USING CLASS TYPES IN GENERICS
+  //klo mau buat pabrik dg constructor:
+  function create<T>(c: T): T {
+    return new c();
+    //         ^ This expression is not constructable.
+    //            Type 'unknown' has no construct signatures.
+  }
+
+  //SOLUSI: pakai constructor signature
+  function create2<T>(c: { new (): T }): T {
+    return new c();
+  }
 }
