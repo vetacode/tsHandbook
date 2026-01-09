@@ -46,3 +46,37 @@ let c = createLabel(Math.random() ? 'hello' : 42);
 // Math.random() -> 0 <= n < 1
 // 0 → false
 // Semua angka selain 0 → true
+
+//1. CONDITIONAL TYPE CONSTRAINTS
+//problem:
+type MessageOf<T> = T['message'];
+//                         ^ Type '"message"' cannot be used to index type 'T'.
+//SOLUTION: use type constraints to T
+type MessageOf2<T extends { message: unknown }> = T['message'];
+//T HARUS berupa object yang punya property message
+
+interface Email {
+  message: string;
+}
+
+type EmailMessageContents = MessageOf2<Email>;
+//            ^ type EmailMessageContents = string
+
+//Kalo kita ingin menerima semua type, jika punya prop message, ambil, jika ga punya return never:
+type MessageOf3<T> = T extends { message: unknown } ? T['message'] : never;
+//Jika T memiliki property message, maka hasilnya adalah tipe dari T["message"], jika tidak, hasilnya never.
+//Conditional type melakukan “type narrowing”
+
+interface Email {
+  message: string;
+}
+
+interface Dog {
+  bark(): void;
+}
+
+type EmailMessageContents2 = MessageOf3<Email>;
+// type EmailMessageContents = string
+
+type DogMessageContents = MessageOf3<Dog>;
+// type DogMessageContents = never
