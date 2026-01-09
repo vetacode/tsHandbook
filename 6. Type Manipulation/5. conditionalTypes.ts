@@ -51,7 +51,7 @@ let c = createLabel(Math.random() ? 'hello' : 42);
 //problem:
 type MessageOf<T> = T['message'];
 //                         ^ Type '"message"' cannot be used to index type 'T'.
-//SOLUTION: use type constraints to T
+//SOLUTION: use type constraints to T -> JIKA kita sudah yakin inputnya pasti punya prop 'message'
 type MessageOf2<T extends { message: unknown }> = T['message'];
 //T HARUS berupa object yang punya property message
 
@@ -80,3 +80,32 @@ type EmailMessageContents2 = MessageOf3<Email>;
 
 type DogMessageContents = MessageOf3<Dog>;
 // type DogMessageContents = never
+
+//FLATTEN
+//Tujuan: klo kita mau buat type utility dgn aturan:
+// - Kalo T adlh array, ambil type element di dalam array
+// - Kalo T bukan array, let it be
+//contoh yg diinginkan:
+// Flatten<string[]>  // → string
+// Flatten<number>   // → number
+
+type Flatten<T> = T extends any[] ? T[number] : T;
+// T extends any[] -> bisa masuk semua array (string[], number[], User[], dsb)
+// ? T[number] : T; -> juka T adlh array, return T[number], jk bukan array, return T
+// T[number] -> adlh indexed access Type, artinya ambil type dari elemen di dlm array T. Contoh simple:
+type A = string[];
+type ElementType = A[number];
+//        ^ type ElementType = string
+
+//Contoh Flatten<string[]>
+type Str = Flatten<string[]>;
+//   ^ type Str = string
+// Logical step:
+//  > string[] extends any[] → Yes
+//  > Masuk ke true branch
+//  > Hitung string[][number]
+//  > Hasil → string
+
+//Contoh Flatten<number>
+type Num = Flatten<number>;
+//    ^ type Num = number
