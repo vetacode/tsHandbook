@@ -33,16 +33,13 @@ let shouldContinue: typeof msgbox("Are you sure you want to continue?");
 // ',' expected.
 
 
-//NOTES:Aturan utama typeof (type operator) Hanya boleh dipakai pada:
-// Identifier (nama variabel / fungsi / class)
-// Property dari identifier tersebut
-// typeof foo
-// typeof foo.bar
+//NOTES:
+// Aturan utama typeof (type operator), Hanya boleh dipakai pada:
+// Identifier (nama variabel / fungsi / class): typeof foo
+// Property dari identifier tersebut: typeof foo.bar
 
 //Tidak boleh dipakai pada expression:
-// pemanggilan fungsi
-// operasi
-// literal hasil evaluasi
-// typeof foo()     // Error
-// typeof (a + b)  // Error
-// typeof "hello"  // Error
+// pemanggilan fungsi: typeof foo()     // Error
+// operasi: typeof (a + b)  // Error
+// literal hasil evaluasi: typeof "hello"  // Error
+
