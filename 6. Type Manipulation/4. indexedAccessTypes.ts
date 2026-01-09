@@ -57,3 +57,18 @@ type Umur3 = (typeof MyArray)[number]['name'];
 //OR
 type Umur2 = Laki['age'];
 //     ^ type Umur2 = number
+
+//You can only use types when indexing, meaning you can’t use a const to make a variable reference:
+const kunci = 'age';
+type Age2 = Person[kunci];
+//    ^ Type 'kunci' cannot be used as an index type.
+//       'kunci' refers to a value, but is being used as a type here. Did you mean 'typeof key'?
+
+//use a type alias for a similar style of refactor:
+type key = 'age';
+type Age3 = Person[key];
+//    ^ type Age3 = number
+
+//OR pakai computed typeof
+type Age4 = Person[typeof kunci];
+//     ^ type Age4 = number
