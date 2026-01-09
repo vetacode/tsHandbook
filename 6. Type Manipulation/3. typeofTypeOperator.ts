@@ -31,3 +31,18 @@ type P2 = ReturnType<typeof f2>;
 // Meant to use = ReturnType<typeof msgbox>
 let shouldContinue: typeof msgbox("Are you sure you want to continue?");
 // ',' expected.
+
+
+//NOTES:Aturan utama typeof (type operator) Hanya boleh dipakai pada:
+// Identifier (nama variabel / fungsi / class)
+// Property dari identifier tersebut
+// typeof foo
+// typeof foo.bar
+
+//Tidak boleh dipakai pada expression:
+// pemanggilan fungsi
+// operasi
+// literal hasil evaluasi
+// typeof foo()     // Error
+// typeof (a + b)  // Error
+// typeof "hello"  // Error
