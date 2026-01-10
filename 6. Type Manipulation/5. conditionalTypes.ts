@@ -47,65 +47,75 @@ let c = createLabel(Math.random() ? 'hello' : 42);
 // 0 → false
 // Semua angka selain 0 → true
 
-//1. CONDITIONAL TYPE CONSTRAINTS
-//problem:
-type MessageOf<T> = T['message'];
-//                         ^ Type '"message"' cannot be used to index type 'T'.
-//SOLUTION: use type constraints to T -> JIKA kita sudah yakin inputnya pasti punya prop 'message'
-type MessageOf2<T extends { message: unknown }> = T['message'];
-//T HARUS berupa object yang punya property message
+{
+  //1. CONDITIONAL TYPE CONSTRAINTS
 
-interface Email {
-  message: string;
+  //problem:
+  type MessageOf<T> = T['message'];
+  //                         ^ Type '"message"' cannot be used to index type 'T'.
+  //SOLUTION: use type constraints to T -> JIKA kita sudah yakin inputnya pasti punya prop 'message'
+  type MessageOf2<T extends { message: unknown }> = T['message'];
+  //T HARUS berupa object yang punya property message
+
+  interface Email {
+    message: string;
+  }
+
+  type EmailMessageContents = MessageOf2<Email>;
+  //            ^ type EmailMessageContents = string
+
+  //Kalo kita ingin menerima semua type, jika punya prop message, ambil, jika ga punya return never:
+  type MessageOf3<T> = T extends { message: unknown } ? T['message'] : never;
+  //Jika T memiliki property message, maka hasilnya adalah tipe dari T["message"], jika tidak, hasilnya never.
+  //Conditional type melakukan “type narrowing”
+
+  interface Email {
+    message: string;
+  }
+
+  interface Dog {
+    bark(): void;
+  }
+
+  type EmailMessageContents2 = MessageOf3<Email>;
+  // type EmailMessageContents = string
+
+  type DogMessageContents = MessageOf3<Dog>;
+  // type DogMessageContents = never
+
+  //FLATTEN
+  //Tujuan: klo kita mau buat type utility dgn aturan:
+  // - Kalo T adlh array, ambil type element di dalam array
+  // - Kalo T bukan array, let it be
+  //contoh yg diinginkan:
+  // Flatten<string[]>  // → string
+  // Flatten<number>   // → number
+
+  type Flatten<T> = T extends any[] ? T[number] : T;
+  // T extends any[] -> bisa masuk semua array (string[], number[], User[], dsb)
+  // ? T[number] : T; -> juka T adlh array, return T[number], jk bukan array, return T
+  // T[number] -> adlh indexed access Type, artinya ambil type dari elemen di dlm array T. Contoh simple:
+  type A = string[];
+  type ElementType = A[number];
+  //        ^ type ElementType = string
+
+  //Contoh Flatten<string[]>
+  type Str = Flatten<string[]>;
+  //   ^ type Str = string
+  // Logical step:
+  //  > string[] extends any[] → Yes
+  //  > Masuk ke true branch
+  //  > Hitung string[][number]
+  //  > Hasil → string
+
+  //Contoh Flatten<number>
+  type Num = Flatten<number>;
+  //    ^ type Num = number
 }
 
-type EmailMessageContents = MessageOf2<Email>;
-//            ^ type EmailMessageContents = string
+{
+  //2. INFERRING WITHIN CONDITIONAL TYPES
 
-//Kalo kita ingin menerima semua type, jika punya prop message, ambil, jika ga punya return never:
-type MessageOf3<T> = T extends { message: unknown } ? T['message'] : never;
-//Jika T memiliki property message, maka hasilnya adalah tipe dari T["message"], jika tidak, hasilnya never.
-//Conditional type melakukan “type narrowing”
-
-interface Email {
-  message: string;
+  //we could have inferred the element type in Flatten instead of fetching it out “manually” with an indexed access type:
+  type Flatten<T> = T extends Array<infer Item> ? Item : T;
 }
-
-interface Dog {
-  bark(): void;
-}
-
-type EmailMessageContents2 = MessageOf3<Email>;
-// type EmailMessageContents = string
-
-type DogMessageContents = MessageOf3<Dog>;
-// type DogMessageContents = never
-
-//FLATTEN
-//Tujuan: klo kita mau buat type utility dgn aturan:
-// - Kalo T adlh array, ambil type element di dalam array
-// - Kalo T bukan array, let it be
-//contoh yg diinginkan:
-// Flatten<string[]>  // → string
-// Flatten<number>   // → number
-
-type Flatten<T> = T extends any[] ? T[number] : T;
-// T extends any[] -> bisa masuk semua array (string[], number[], User[], dsb)
-// ? T[number] : T; -> juka T adlh array, return T[number], jk bukan array, return T
-// T[number] -> adlh indexed access Type, artinya ambil type dari elemen di dlm array T. Contoh simple:
-type A = string[];
-type ElementType = A[number];
-//        ^ type ElementType = string
-
-//Contoh Flatten<string[]>
-type Str = Flatten<string[]>;
-//   ^ type Str = string
-// Logical step:
-//  > string[] extends any[] → Yes
-//  > Masuk ke true branch
-//  > Hitung string[][number]
-//  > Hasil → string
-
-//Contoh Flatten<number>
-type Num = Flatten<number>;
-//    ^ type Num = number
