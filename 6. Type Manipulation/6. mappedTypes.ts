@@ -70,4 +70,40 @@
   //1. MAPPING MODIFIERS
   //additional modifiers which can be applied during mapping:
   // -> 'readonly' and '?' -> affect mutability and optionality respectively.
+  // remove or add these modifiers by prefixing with - or +.
+  // If don’t add a prefix, then + is assumed
+
+  // Removes 'readonly' attributes from a type's properties
+  type CreateMutable<T> = {
+    -readonly [P in keyof T]: T[P];
+  };
+
+  type LockedAccount = {
+    readonly id: string;
+    readonly name: string;
+  };
+
+  type UnlockedAccount = CreateMutable<LockedAccount>;
+  //          ^ type UnlockedAccount = {
+  //                 id: string;
+  //                 name: string;
+  //            };
+
+  // Removes 'optional' attributes from a type's properties
+  type Concrete<T> = {
+    [P in keyof T]-?: T[P];
+  };
+
+  type MaybeUser = {
+    id: string;
+    name?: string;
+    age?: number;
+  };
+
+  type User = Concrete<MaybeUser>;
+  // type User = {
+  //     id: string;
+  //     name: string;
+  //     age: number;
+  // }
 }
