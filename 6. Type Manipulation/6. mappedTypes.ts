@@ -12,4 +12,56 @@
   // - Mengambil kumpulan key (biasanya dari keyof)
   // - Mengulang (iterate) setiap key tsb
   // - Membentuk type baru berdasarkan keys tsb
+
+  //Pola syntax:
+  type Mapper<T> = {
+    [K in keyof T]: NewType;
+  };
+
+  //T -> type input
+  //keyof T -> union key of props
+  //K in .. -> loop key
+  //NewType -> value baru
+
+  //mental model di js:
+  // keyof Type === daftar nama properti
+  // mapped type === loop for di level type
+
+  type OptionsFlags<T> = {
+    [Props in keyof T]: boolean;
+  };
+  // keyof T -> menghasilkan union semua props name
+  // [Props in keyof T] -> untuk setiap property di T ....
+  // : boolean -> ubah value nya jadi boolean
+  // Nama Props bebas, bisa diganti K/Key/dsb
+
+  //Contoh:
+  type Features = {
+    darkMode: () => void;
+    newUserProfile: () => void;
+  };
+
+  // keyof Features -> darkMode | newUserProfile
+
+  type FeatureOptions = OptionsFlags<Features>;
+  //          ^ type FeatureOptions = {
+  //                    darkMode: boolean;
+  //                    newUserProfile: boolean;
+  //             }
+
+  //Aplikasi di project feature toggle:
+  const features: FeatureOptions = {
+    darkMode: true,
+    newUserProfile: false,
+  };
+
+  //Konfigurasi:
+  type ReadOnlyConfig<T> = {
+    [K in keyof T]: boolean;
+  };
+
+  //Validasi:
+  type ValidationState<T> = {
+    [K in keyof T]: boolean;
+  };
 }
