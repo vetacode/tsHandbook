@@ -35,7 +35,7 @@
   // : boolean -> ubah value nya jadi boolean
   // Nama Props bebas, bisa diganti K/Key/dsb
 
-  //Contoh:
+  //Contoh usage:
   type Features = {
     darkMode: () => void;
     newUserProfile: () => void;
@@ -49,18 +49,18 @@
   //                    newUserProfile: boolean;
   //             }
 
-  //Aplikasi di project feature toggle:
+  //Usage untuk di project feature toggle:
   const features: FeatureOptions = {
     darkMode: true,
     newUserProfile: false,
   };
 
-  //Konfigurasi:
+  //Aplikasi di Konfigurasi:
   type ReadOnlyConfig<T> = {
     [K in keyof T]: boolean;
   };
 
-  //Validasi:
+  //Aplikasi di Validasi:
   type ValidationState<T> = {
     [K in keyof T]: boolean;
   };
