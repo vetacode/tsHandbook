@@ -149,3 +149,8 @@ declare function stringOrNum(x: string | number): string | number;
 type T1 = ReturnType<typeof stringOrNum>;
 //   ^ type T1 = string | number
 //Infer selalu diambil dari signature TERAKHIR
+
+//NOTES:
+// INFER artinya Kalo type ini bentuknya cocok, ambil type bagian dalamnya dan pake type itu
+//Syntax INFER:
+// T extends SomeStructure<infer X> ? X : Fallback
