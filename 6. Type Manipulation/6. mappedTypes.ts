@@ -65,3 +65,9 @@
     [K in keyof T]: boolean;
   };
 }
+
+{
+  //1. MAPPING MODIFIERS
+  //additional modifiers which can be applied during mapping:
+  // -> 'readonly' and '?' -> affect mutability and optionality respectively.
+}
