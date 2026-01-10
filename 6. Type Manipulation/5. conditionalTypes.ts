@@ -117,5 +117,30 @@ let c = createLabel(Math.random() ? 'hello' : 42);
   //2. INFERRING WITHIN CONDITIONAL TYPES
 
   //we could have inferred the element type in Flatten instead of fetching it out “manually” with an indexed access type:
-  type Flatten<T> = T extends Array<infer Item> ? Item : T;
+  type Flatten<T> = T extends Array<infer Item> ? Item : T; // -> jk T adlh Array dari sesuatu, maka beri nama sesuatu itu 'Item', dan hasilnya 'Item'
+  //Infer adalah cara mengambil type di dalam (dlm contoh ini adalah type di dlm Array)
+  //aplikasi:
+  type Num = Flatten<number[]>;
+  //    ^ type Num = number
+  type Str = Flatten<string>;
+  //    ^ type Str = string
+
+  type GetReturnType<T> = T extends (...args: never[]) => infer Return
+    ? Return
+    : never;
+  //T extends (...args: never[]) => infer Return -> artinya jika T adlh function dgn param apapun dan dgn return type tertentu, ambil return type itu dan beri nama 'Return'
+  //never[] disini artinya kita ga peduli argumennya apa, yg penting function
+  //aplikasi:
+  type Numbre = GetReturnType<() => number>;
+  //     ^ type Numbre = number
+  type Setring = GetReturnType<(x: string) => string>;
+  //     ^ type Setring = string
+  type Bool = GetReturnType<(a: boolean, b: boolean) => boolean>;
+  //     ^ type Bool = boolean
+  type Z = GetReturnType<string>; //argument bukan function
+  //   ^ type Z = never
 }
+
+declare function stringOrNum(x: string): number;
+declare function stringOrNum(x: number): string;
+declare function stringOrNum(x: string | number): string | number;
