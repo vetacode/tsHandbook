@@ -154,3 +154,16 @@ type T1 = ReturnType<typeof stringOrNum>;
 // INFER artinya Kalo type ini bentuknya cocok, ambil type bagian dalamnya dan pake type itu
 //Syntax INFER:
 // T extends SomeStructure<infer X> ? X : Fallback
+
+{
+  //3. DISTRIBUTIVE CONDITIONAL TYPES
+  //When conditional types act on a generic type, they become distributive when given a union type
+  type ToArray<T> = T extends any ? T[] : never;
+
+  type NumStrArr = ToArray<number | string>;
+  //     ^ type NumStrArr = string[] | number[]
+}
+//To avoid distributive behavior, surround each side of the extends keyword with square brackets:
+type ToArray<T> = [T] extends [any] ? T[] : never;
+type NumStrArr = ToArray<number | string>;
+//      ^ type NumStrArr = (string | number)[]
