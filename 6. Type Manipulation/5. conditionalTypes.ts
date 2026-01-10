@@ -141,6 +141,11 @@ let c = createLabel(Math.random() ? 'hello' : 42);
   //   ^ type Z = never
 }
 
+//di function overloads -> satu function dgn banyak signature
 declare function stringOrNum(x: string): number;
 declare function stringOrNum(x: number): string;
 declare function stringOrNum(x: string | number): string | number;
+
+type T1 = ReturnType<typeof stringOrNum>;
+//   ^ type T1 = string | number
+//Infer selalu diambil dari signature TERAKHIR
