@@ -154,6 +154,8 @@
     [P in T as P['kind']]: (event: P) => void;
   };
 
+  // P in T -> bertujuan untuk memetakan member union T, so ga pake 'keyof'
+
   type SquareEvent = { kind: 'square'; x: number; y: number };
   type CircleEvent = { kind: 'circle'; radius: number };
 
@@ -164,3 +166,5 @@
   //     circle: (event: CircleEvent) => void;
   // }
 }
+
+//3. FURTHER EXPLORTAION
