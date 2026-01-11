@@ -113,8 +113,8 @@
   type MappedTypeWithNewProperties<T> = {
     [P in keyof T as NewKeyType]: T[P];
   };
-
-  //handy to create new props names:
+  // Usage:
+  //a. to create new props names:
   type Getters<T> = {
     [P in keyof T as `get${Capitalize<string & P>}`]: () => T[P];
   };
@@ -131,4 +131,20 @@
   //              getAge: () => number;
   //              getLocation: () => string;
   //          }
+
+  //b. filter out keys, by producing never via conditional type
+  //Remove the 'tulisan' props:
+  type RemoveField<T> = {
+    [P in keyof T as Exclude<P, 'tulisan'>]: T[P];
+  };
+
+  interface Group {
+    tulisan: string;
+    nomor: number;
+  }
+
+  type NoTulisan = RemoveField<Group>;
+  //      ^ type NoTulisan = {
+  //            nomor: number;
+  //        }
 }
