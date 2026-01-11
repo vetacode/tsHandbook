@@ -168,3 +168,20 @@
 }
 
 //3. FURTHER EXPLORTAION
+
+//Mapped type + conditional type combination
+
+type ExtractPII<T> = {
+  [P in keyof T]: T[P] extends { pii: true } ? true : false;
+};
+
+type DBFields = {
+  id: { format: 'incrementing' };
+  name: { type: string; pii: true };
+};
+
+type ObjectsNeedingGDPRDeletion = ExtractPII<DBFields>;
+// type ObjectsNeedingGDPRDeletion = {
+//     id: false;
+//     name: true;
+// }
