@@ -106,4 +106,11 @@
   //     name: string;
   //     age: number;
   // }
+
+  //2. KEY REMAPPING VIA AS
+
+  //SYNTAX:
+  type MappedTypeWithNewProperties<T> = {
+    [P in keyof T as NewKeyType]: T[P];
+  };
 }
