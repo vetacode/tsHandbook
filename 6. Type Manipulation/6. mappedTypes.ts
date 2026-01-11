@@ -147,4 +147,20 @@
   //      ^ type NoTulisan = {
   //            nomor: number;
   //        }
+
+  //c. map over abritary unions of any type
+
+  type EventConfig<T extends { kind: string }> = {
+    [P in T as P['kind']]: (event: P) => void;
+  };
+
+  type SquareEvent = { kind: 'square'; x: number; y: number };
+  type CircleEvent = { kind: 'circle'; radius: number };
+
+  type Events = SquareEvent | CircleEvent;
+  type Config = EventConfig<Events>;
+  // type Config = {
+  //     square: (event: SquareEvent) => void;
+  //     circle: (event: CircleEvent) => void;
+  // }
 }
