@@ -113,4 +113,22 @@
   type MappedTypeWithNewProperties<T> = {
     [P in keyof T as NewKeyType]: T[P];
   };
+
+  //handy to create new props names:
+  type Getters<T> = {
+    [P in keyof T as `get${Capitalize<string & P>}`]: () => T[P];
+  };
+
+  interface Person {
+    name: string;
+    age: number;
+    location: string;
+  }
+
+  type LazyPerson = Getters<Person>;
+  //        ^ type LazyPerson = {
+  //              getName: () => string;
+  //              getAge: () => number;
+  //              getLocation: () => string;
+  //          }
 }
