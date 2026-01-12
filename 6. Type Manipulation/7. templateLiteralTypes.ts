@@ -111,3 +111,10 @@ person2.on('ageChanged', (newAge) => {
   type MainID = ASCIICacheKey<'MY_APP'>;
   // type MainID = "id-my_app"
 }
+
+{
+  //c. Capitalize<StringType>
+  type LowercaseGreeting = 'hello, world';
+  type Greeting = Capitalize<LowercaseGreeting>;
+  // type Greeting = "Hello, world"
+}
