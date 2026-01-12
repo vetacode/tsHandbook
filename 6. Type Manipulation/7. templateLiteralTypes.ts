@@ -57,3 +57,34 @@ person.on('firstName', () => {});
 // It's typo-resistant
 person.on('frstNameChanged', () => {});
 // Argument of type '"frstNameChanged"' is not assignable to parameter of type '"firstNameChanged" | "lastNameChanged" | "ageChanged"'.
+
+//2. INFERENCE WITH TEMPLATE LITERALS
+
+type PropEventSource2<Type> = {
+  on<Key extends string & keyof Type>(
+    eventName: `${Key}Changed`,
+    callback: (newValue: Type[Key]) => void
+  ): void;
+};
+
+declare function makeWatchedObject2<Type>(
+  obj: Type
+): Type & PropEventSource2<Type>;
+
+const person2 = makeWatchedObject2({
+  firstName: 'Saoirse',
+  lastName: 'Ronan',
+  age: 26,
+});
+
+person2.on('firstNameChanged', (newName) => {
+  // (parameter) newName: string
+  console.log(`new name is ${newName.toUpperCase()}`);
+});
+
+person2.on('ageChanged', (newAge) => {
+  // (parameter) newAge: number
+  if (newAge < 0) {
+    console.warn('warning! negative age');
+  }
+});
