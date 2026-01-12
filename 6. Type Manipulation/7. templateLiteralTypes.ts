@@ -88,3 +88,5 @@ person2.on('ageChanged', (newAge) => {
     console.warn('warning! negative age');
   }
 });
+
+//3. INTRINSIC STRINGMANIPULATION TYPES
