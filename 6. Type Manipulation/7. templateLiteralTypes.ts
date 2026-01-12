@@ -118,3 +118,10 @@ person2.on('ageChanged', (newAge) => {
   type Greeting = Capitalize<LowercaseGreeting>;
   // type Greeting = "Hello, world"
 }
+
+{
+  //d. Uncapitalize<StringType>
+  type UppercaseGreeting = 'HELLO WORLD';
+  type UncomfortableGreeting = Uncapitalize<UppercaseGreeting>;
+  // type UncomfortableGreeting = "hELLO WORLD"
+}
