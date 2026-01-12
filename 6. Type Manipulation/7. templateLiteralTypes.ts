@@ -100,3 +100,14 @@ person2.on('ageChanged', (newAge) => {
   type MainID = ASCIICacheKey<'my_app'>;
   //      ^  type MainID = "ID-MY_APP"
 }
+
+{
+  //b. Lowercase<StringType>
+  type Greeting = 'Hello, world';
+  type QuietGreeting = Lowercase<Greeting>;
+  // type QuietGreeting = "hello, world"
+
+  type ASCIICacheKey<Str extends string> = `id-${Lowercase<Str>}`;
+  type MainID = ASCIICacheKey<'MY_APP'>;
+  // type MainID = "id-my_app"
+}
