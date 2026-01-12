@@ -125,3 +125,18 @@ person2.on('ageChanged', (newAge) => {
   type UncomfortableGreeting = Uncapitalize<UppercaseGreeting>;
   // type UncomfortableGreeting = "hELLO WORLD"
 }
+
+//Technical details on intrinsic string manipulation types
+function applyStringMapping(symbol: Symbol, str: string) {
+  switch (intrinsicTypeKinds.get(symbol.escapedName as string)) {
+    case IntrinsicTypeKind.Uppercase:
+      return str.toUpperCase();
+    case IntrinsicTypeKind.Lowercase:
+      return str.toLowerCase();
+    case IntrinsicTypeKind.Capitalize:
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    case IntrinsicTypeKind.Uncapitalize:
+      return str.charAt(0).toLowerCase() + str.slice(1);
+  }
+  return str;
+}
