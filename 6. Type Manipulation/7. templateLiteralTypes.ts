@@ -90,3 +90,13 @@ person2.on('ageChanged', (newAge) => {
 });
 
 //3. INTRINSIC STRINGMANIPULATION TYPES
+{
+  //a. Uppercase<StringType>
+  type Greeting = 'Hello, world';
+  type ShoutyGreeting = Uppercase<Greeting>;
+  //        ^  type ShoutyGreeting = 'HELLO, WORLD';
+
+  type ASCIICacheKey<Str extends string> = `ID-${Uppercase<Str>}`;
+  type MainID = ASCIICacheKey<'my_app'>;
+  //      ^  type MainID = "ID-MY_APP"
+}
