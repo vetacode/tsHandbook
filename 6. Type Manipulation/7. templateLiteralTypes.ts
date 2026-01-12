@@ -51,11 +51,11 @@ declare function makeWatchedObject<Type>(
 person.on('firstNameChanged', () => {});
 
 // Prevent easy human error (using the key instead of the event name)
-person.on('firstName', () => {});
+person.on('firstName', () => {}); //warn wrong arguments
 // Argument of type '"firstName"' is not assignable to parameter of type '"firstNameChanged" | "lastNameChanged" | "ageChanged"'.
 
 // It's typo-resistant
-person.on('frstNameChanged', () => {});
+person.on('frstNameChanged', () => {}); //warn typos
 // Argument of type '"frstNameChanged"' is not assignable to parameter of type '"firstNameChanged" | "lastNameChanged" | "ageChanged"'.
 
 //2. INFERENCE WITH TEMPLATE LITERALS
