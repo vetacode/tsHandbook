@@ -1,7 +1,7 @@
-// @strictPropertyInitialization: false
+// @strictPropertyInitialization: true
 class Point {
-  x: number;
-  y: number;
+  x!: number;
+  y!: number;
 }
 
 const pt = new Point();

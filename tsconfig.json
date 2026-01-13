@@ -42,7 +42,7 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-    "strictPropertyInitialization": false,
+    // "strictPropertyInitialization": false,
 
     "moduleResolution": "NodeNext",
     "outDir": "dist",
