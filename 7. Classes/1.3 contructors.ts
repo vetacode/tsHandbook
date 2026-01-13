@@ -35,5 +35,28 @@ class Point {
   //    ^ No overload expects 1 arguments, but overloads do exist that expect either 0 or 2 arguments.
 }
 
-//NOTES:
-//Constructor tdk boleh punya return type
+{
+  //NOTES:
+  //Constructor tdk boleh punya return type
+  // Tidak boleh -> constructor(x: number): Point { }
+  //Constructor selalu mengembalikan instance class itu sendiri
+  // new Point() → otomatis bertipe Point
+
+  //Constructore tdk boleh punya type parameter
+  class Box {
+    constructor<T>(value: T) {}
+    //          ^ Type parameters cannot appear on a constructor declaration.
+  }
+
+  //Solusi
+  class Box2<T> {
+    value: T;
+    constructor(value: T) {
+      this.value = value;
+    }
+  }
+
+  //Constructor hanyalah bagian dari class
+  // Generic adalah konsep milik class, bukan constructor
+  // Instance type ditentukan saat new Box<number>(), bukan di constructor
+}
