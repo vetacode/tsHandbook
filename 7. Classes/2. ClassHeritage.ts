@@ -12,7 +12,11 @@ class Sonar implements Pingable {
     console.log('ping!');
   }
 }
+//Yg TS lakukan adlh nge-cek:
+// Apakah class Sonar punya method ping()? yes -> aman
+// Apakah return type-nya cocok (void)? yes -> aman
 
+//contoh error:
 class Ball implements Pingable {
   // Class 'Ball' incorrectly implements interface 'Pingable'.
   //   Property 'ping' is missing in type 'Ball' but required in type 'Pingable'.
@@ -24,7 +28,10 @@ class Ball implements Pingable {
   //   console.log('ping');
   // }
 }
+//Error krn:
+// interface minta ping() -> tp class ga punya ping()
 
+//Kesalahan umum: implements mengubah type parameter
 interface Checkable {
   check(name: string): boolean;
 }
@@ -35,9 +42,17 @@ class NameChecker implements Checkable {
     // Notice no error here
     return s.toLowerCase() === 'ok';
 
-    // any
+    // s: any -> coz implements interface ga passing/mengubah type ke class
   }
 }
+
+//Solusi: tulis manual type di class
+class NameChecker2 implements Checkable {
+  check(s: string) {
+    return s.toLocaleLowerCase() === 'ok';
+  }
+}
+//interface hanya ngecek kecocokan, ga ngerubah apapun
 
 interface A {
   x: number;
