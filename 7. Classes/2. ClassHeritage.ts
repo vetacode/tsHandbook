@@ -53,7 +53,9 @@ class NameChecker2 implements Checkable {
   }
 }
 //interface hanya ngecek kecocokan, ga ngerubah apapun
+//Artinya: implements hanya ngecek: Apakah check() PUNYA parameter string dan return boolean?
 
+//Optional Props tidak otomatis dibuat
 interface A {
   x: number;
   y?: number;
@@ -64,3 +66,4 @@ class C implements A {
 const c = new C();
 c.y = 10;
 // Property 'y' does not exist on type 'C'.
+//implements tidak otomatis menambahkan properti 'y'
