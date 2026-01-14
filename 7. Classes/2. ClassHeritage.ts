@@ -67,3 +67,12 @@ const c = new C();
 c.y = 10;
 // Property 'y' does not exist on type 'C'.
 //implements tidak otomatis menambahkan properti 'y'
+
+//Solusi: sertakan optional type
+class C2 implements A {
+  x = 0;
+  y?: number;
+}
+
+const c2 = new C2();
+c2.y = 10; //aman
