@@ -38,6 +38,7 @@ class A {
 }
 
 //Bracket notation access private
+//Private is a SOFT PRIVATE
 //Di typescript:
 class MySafe {
   private secretKey = 12345;
@@ -62,3 +63,40 @@ console.log(s['secretKey']); //Aman -> coz TS mengalah
 //Bracket notation adalah property access dinamis
 //TS tidak menerapkan aturan private pada akses dinamis (TypeScript tidak menganggap bracket notation sebagai akses langsung ke member private, karena secara umum property name bisa dinamis.)
 // TS tidak bisa membuktikan bahwa ini pelanggaran aturan private. (Bukan karena TS "mendukung bypass", tapi karena batasan sistem tipe)
+
+//HARD Private
+class Dog {
+  #barkAmount = 0;
+  personality = 'happy';
+  //Artinya:
+  //#barkAmount:
+  //tidak bisa diakses dari luar class
+  //tidak bisa pakai bracket notation
+  //tidak muncul di Object.keys
+
+  // personality -> property normal, public
+  constructor() {}
+}
+
+//Setelah compile ke JS (ES2022+):
+('use strict');
+class Dog2 {
+  #barkAmount = 0;
+  personality = 'happy';
+  constructor() {}
+  //#barkAmount masih tetap ada
+  //nilainya ga diubah
+  //Privacy dijaga oleh JS runtime
+  // ini disebut HARD PRIVATE
+}
+
+//Compile JS (ES2021/kebawah):
+('use strict');
+var _Dog_barkAmount;
+class Dog {
+  constructor() {
+    _Dog_barkAmount.set(this, 0);
+    this.personality = 'happy';
+  }
+}
+_Dog_barkAmount = new WeakMap();
