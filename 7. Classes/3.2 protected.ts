@@ -49,7 +49,8 @@ console.log(d.m); // OK -> coz Derived membuka akses ke public
     f2(other: Derived1) {
       other.x = 10;
       //    ^ Property 'x' is protected and only accessible within class 'Derived1' and its subclasses.
-      //Error coz Derived2 adalah sibling Derived1, so ga boleh akses protected property milik sibling (Derived1)
+      // Error: Derived2 tidak boleh mengakses protected x milik Derived1
+      // karena mereka sibling (bukan parent-child)
     }
   }
 }
