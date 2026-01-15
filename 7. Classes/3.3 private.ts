@@ -26,3 +26,39 @@ class Derived extends Base {
     x = 1;
   }
 }
+
+//Cross-instance private access: TS Allowed
+class A {
+  private x = 10;
+
+  public sameAs(other: A) {
+    // No error
+    return other.x === this.x;
+  }
+}
+
+//Bracket notation access private
+//Di typescript:
+class MySafe {
+  private secretKey = 12345;
+  //secretKey adalah soft private (compile-time only)
+}
+
+//Setelah compiled ke JS:
+class MySafe2 {
+  constructor() {
+    this.secretKey = 12345;
+  }
+}
+
+//secara runtime JS -> aman:
+const s = new MySafe();
+console.log(s.secretKey); // 12345
+//Tapi Error di compile time TS
+// coz aturannya: private hanya boleh diakses di dalam class itu sendiri
+
+//Solusi: pake bracket notation untuk akses
+console.log(s['secretKey']); //Aman -> coz TS mengalah
+//Bracket notation adalah property access dinamis
+//TS tidak menerapkan aturan private pada akses dinamis (TypeScript tidak menganggap bracket notation sebagai akses langsung ke member private, karena secara umum property name bisa dinamis.)
+// TS tidak bisa membuktikan bahwa ini pelanggaran aturan private. (Bukan karena TS "mendukung bypass", tapi karena batasan sistem tipe)
