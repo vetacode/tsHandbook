@@ -104,3 +104,46 @@ c.greet('Hellow'); //aman
   const b: Base = d;
   b.greet();
 }
+
+{
+  //Type-only Field Declarations
+  //-> Untuk sekedar mengingatkan tyoe, bukan untuk bikin field baru, overwirte nilai ataupun reset properti
+  interface Animal {
+    dateOfBirth: any;
+  }
+
+  interface Dog extends Animal {
+    breed: any;
+  }
+
+  interface Cat extends Animal {
+    nose: any;
+  }
+
+  class AnimalHouse {
+    resident: Animal;
+    constructor(animal: Animal) {
+      this.resident = animal;
+    }
+  }
+
+  class CatHouse extends AnimalHouse {
+    resident: Cat;
+    //Property 'resident' has no initializer and is not definitely assigned in the constructor.
+    // Property 'resident' will overwrite the base property in 'AnimalHouse'.
+    //  If this is intentional, add an initializer. Otherwise, add a 'declare' modifier or remove the redundant declaration.
+    constructor(cat: Cat) {
+      super(cat);
+    }
+  }
+
+  //SOLUTION: declare
+  class DogHouse extends AnimalHouse {
+    // Does not emit JavaScript code,
+    // only ensures the types are correct
+    declare resident: Dog; //Trust me, 'resident' in this sublcass is 'Dog'
+    constructor(dog: Dog) {
+      super(dog);
+    }
+  }
+}
