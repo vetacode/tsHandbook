@@ -34,3 +34,14 @@ class Derived extends Base {
   // klo akses lewat instance nya akan error:
   // new Derived().getGreeting(); // ERROR
 }
+
+//NOTES:
+//Pakai static jika:
+// Tidak butuh data instance
+// Fungsi utilitas
+// Counter global
+// Factory method
+
+//Ga perlu pakai static jika:
+// Bergantung pada data object (this)
+// Setiap instance harus punya state sendiri
