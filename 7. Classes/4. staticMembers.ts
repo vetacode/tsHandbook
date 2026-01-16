@@ -1,4 +1,4 @@
-//Classes Static Members are not associated with a particular instance of the class.
+//Classes Static Members are not associated with a particular instance of the class -> tdk bisa diakses lewat instance
 //Can be accessed through the class constructor object itself:
 class MyClass {
   static x = 0;
@@ -6,9 +6,14 @@ class MyClass {
     console.log(MyClass.x);
   }
 }
+console.log(MyClass.x); //Aman -> akses langsung via class nya
+MyClass.printX(); //Aman -> akses langsung via class nya
+const obj = new MyClass();
 
-console.log(MyClass.x);
-MyClass.printX();
+obj.x; // Error, coz akses indirect lewat instance nya. Klo member biasa (ga pake static), bisa/aman akses via instance
+//  ^ Property 'x' does not exist on type 'MyClass'. Did you mean to access the static member 'MyClass.x' instead?
+obj.printX(); // Error, coz akses indirect lewat instance nya
+//    ^ Property 'printX' does not exist on type 'MyClass'. Did you mean to access the static member 'MyClass.printX' instead?
 
 //Can also use public, protected and private visibility modifiers:
 class Yours {
@@ -25,5 +30,7 @@ class Base {
 }
 
 class Derived extends Base {
-  myGreeting = Derived.getGreeting();
+  myGreeting = Derived.getGreeting(); //aman coz akses tetap lewat Base class
+  // klo akses lewat instance nya akan error:
+  // new Derived().getGreeting(); // ERROR
 }
