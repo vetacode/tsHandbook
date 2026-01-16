@@ -57,7 +57,7 @@ class User {
     console.log(`Hi, I'm ${this.name}`);
   }
 
-  constructor(name: string) {
-    this.name = name;
+  constructor(value: string) {
+    this.name = value;
   }
 }
