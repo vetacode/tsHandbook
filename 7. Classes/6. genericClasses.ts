@@ -53,4 +53,10 @@ class Box3<Type> {
 
   const b1 = new Box(10); //const b1: Box<number>
   const b2 = Box.create('Hei'); //const b2: Box<string>
+  const b3 = Box.create({ name: 'Alice', age: 35 });
+  //const b3: Box<{
+  //     name: string;
+  //     age: number;
+  // }>
+  const b4 = Box.create<boolean>(true); //const b4: Box<boolean>
 }
