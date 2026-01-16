@@ -24,7 +24,7 @@ class Box2<T> {
 //  Box<number>.defaultValue
 
 //SOLUSI: static method dgn generic sendiri
-class Box3<T> {
+class Box3<Type> {
   static create<T>(value: T) {
     return new Box<T>(value);
   }
@@ -33,3 +33,24 @@ class Box3<T> {
 
 // NOTES:
 // Static members hidup di runtime, generic hanya hidup di type system — karena itu static tidak boleh bergantung pada generic class.
+
+{
+  //Penggunaan:
+  class Box<T> {
+    contents: T;
+
+    constructor(value: T) {
+      this.contents = value;
+    }
+
+    static create<S>(value: S) {
+      return new Box<S>(value);
+    }
+  }
+  //generic T milik class
+  //generic S milik method create
+  //static ga pakai generic type
+
+  const b1 = new Box(10); //const b1: Box<number>
+  const b2 = Box.create('Hei'); //const b2: Box<string>
+}
