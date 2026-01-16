@@ -43,6 +43,7 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
     // "strictPropertyInitialization": false,
+    // "useDefineForClassFields": true,
 
     "moduleResolution": "NodeNext",
     "outDir": "dist",

@@ -41,7 +41,23 @@ class Derived extends Base {
 // Fungsi utilitas
 // Counter global
 // Factory method
+class MathUtil {
+  static add(a: number, b: number) {
+    return a + b;
+  }
+}
+MathUtil.add(2, 3); // 5
 
 //Ga perlu pakai static jika:
 // Bergantung pada data object (this)
 // Setiap instance harus punya state sendiri
+class User {
+  name: string;
+  greet() {
+    console.log(`Hi, I'm ${this.name}`);
+  }
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}
