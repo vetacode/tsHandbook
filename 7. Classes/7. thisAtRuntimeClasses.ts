@@ -24,3 +24,10 @@ console.log(obj.getName()); //Ojek
 
 c.name; // -> Kelas
 c.getName(); // -> this === c -> return this.name -> c.name -> Kelas
+
+//NOTE: this ditentukan saat runtime oleh cara pemanggilan, bukan oleh class
+
+//SOLUSI:
+// Arrow function
+// this parameter di TS
+// bind this
