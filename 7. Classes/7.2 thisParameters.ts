@@ -27,15 +27,17 @@ class Kelasku {
 }
 
 const k = new Kelasku();
-const n = k.getName();
-const m = k.getName;
+const n = k.getName(); // -> yg disimpan di n adlh hasil dari pemanggilan function
+const m = k.getName; // -> yg disimpan di m adlh function itu sendiri
+//this hilang
 
-console.log(n); //Aman
+console.log(n); //Aman -> n skrg adalah string
 console.log(n()); //Error: This expression is not callable. // Type 'String' has no call signatures. k.getName(): return 'string'
 // -> artinya: string bukan function, ga bisa dipanggil dengan () -> error out of context this
+console.log(m); //Aman -> m skrg adalah function: () => string
+//this hilang
 console.log(m()); //Error TS compile time -> wrong this context
 //          ^ The 'this' context of type 'void' is not assignable to method's 'this' of type 'Kelasku'.
-//
 
 //Pakai this: Params jika:
 // Method tidak boleh dilepas dari object
