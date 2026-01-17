@@ -8,7 +8,7 @@ class MyClass {
 const c = new MyClass();
 const g = c.getName;
 
-console.log(g()); //MyClass
+console.log(g()); //Aman -> result: MyClass
 
 //Kelebihan:
 // this otomatis bind ke instance
@@ -28,9 +28,14 @@ class Kelasku {
 
 const k = new Kelasku();
 const n = k.getName();
+const m = k.getName;
 
 console.log(n); //Aman
-console.log(n()); //Error
+console.log(n()); //Error: This expression is not callable. // Type 'String' has no call signatures. k.getName(): return 'string'
+// -> artinya: string bukan function, ga bisa dipanggil dengan () -> error out of context this
+console.log(m()); //Error TS compile time -> wrong this context
+//          ^ The 'this' context of type 'void' is not assignable to method's 'this' of type 'Kelasku'.
+//
 
 //Pakai this: Params jika:
 // Method tidak boleh dilepas dari object
