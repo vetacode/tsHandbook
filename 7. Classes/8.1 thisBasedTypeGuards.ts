@@ -1,3 +1,18 @@
+{
+  //Contoh tanpa this-based type guard
+  class FileSystemObject {
+    path!: string;
+  }
+
+  function getSomething(): FileSystemObject {
+    return new FileSystemObject();
+  }
+
+  const fso: FileSystemObject = getSomething();
+
+  fso;
+}
+
 class FileSystemObject {
   isFile(): this is FileRep {
     return this instanceof FileRep;
