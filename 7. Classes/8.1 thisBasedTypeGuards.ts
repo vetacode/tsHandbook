@@ -13,10 +13,16 @@
   fso;
 }
 
+//SYNTAX: methodName(): this is SomeType
+//Artinya: Jika method ini mengembalikan true, maka this boleh dianggap sebagai SomeType
+
 class FileSystemObject {
   isFile(): this is FileRep {
     return this instanceof FileRep;
   }
+  //Artinya: Jika isFile() → true, maka type 'this' pasti FileRep
+  //Klo pake 'isFile(): boolean' biasa, TS hanya tau return true/false, tapi ga tau klo true, type nya apa?..
+
   isDirectory(): this is Directory {
     return this instanceof Directory;
   }
