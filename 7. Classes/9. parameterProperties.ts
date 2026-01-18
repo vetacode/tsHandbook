@@ -1,5 +1,6 @@
 //Basicnya, di class kita declare property lalu assign nilai nya di constructor
 //TypeScript menyediakan shortcut supaya dua langkah itu digabung jadi satu, yaitu parameter properties.
+//Parameter properties cuma syntax sugar di TypeScript, bukan fitur runtime
 
 //Caranya:
 // Tambahkan modifier (public, private, protected, readonly) langsung di parameter constructor.
