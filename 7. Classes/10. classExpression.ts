@@ -20,3 +20,18 @@ b.content;
 // | ----- | --------------- |
 // | Type  | ✅ Hoisted       |
 // | Value | ❌ Tidak hoisted |
+
+//Class Expression
+const someClass = class<T> {
+  content: T;
+  constructor(value: T) {
+    this.content = value;
+  }
+};
+
+//class<T> { ... } adalah expression
+// Disimpan ke variabel SomeClass
+// Nama class diambil dari variabel, bukan dari deklarasi
+
+const m = new someClass('Hello, world');
+// const m: someClass<string>;
