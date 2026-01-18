@@ -29,6 +29,10 @@ class FileSystemObject {
   isNetworked(): this is Networked & this {
     return this.networked;
   }
+  //Artinya: Jika isNetworked() -> true, maka:
+  // object ini tetap FileSystemObject
+  // dan juga punya properti host
+
   constructor(
     public path: string,
     private networked: boolean
@@ -45,7 +49,7 @@ class FileRep extends FileSystemObject {
 }
 
 class Directory extends FileSystemObject {
-  children: FileSystemObject[];
+  children!: FileSystemObject[];
 }
 
 interface Networked {
@@ -65,6 +69,7 @@ if (fso.isFile()) {
   // const fso: Networked & FileSystemObject
 }
 
+//Contoh lain lebih sederhana
 class Box<T> {
   value?: T;
 
@@ -83,3 +88,15 @@ if (box.hasValue()) {
   box.value;
   // (property) value: string
 }
+
+//Pakai this-based type guard jika:
+// Validasi state internal object
+// OOP style API
+// Lazy validation (cek dulu, baru pakai)
+
+//Jangan pakai jika:
+// Validasi object lain
+// Logic tidak menjamin kebenaran tipe
+
+// NOTES:
+// this-based type guard adalah cara object “meyakinkan” TypeScript bahwa dirinya sekarang aman diperlakukan sebagai tipe tertentu.
