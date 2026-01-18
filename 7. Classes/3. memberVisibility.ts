@@ -8,5 +8,5 @@
 // | ----------- | ------------------------------------- |
 // | `public`    | Bisa diakses dari mana saja           |
 // | `private`   | Hanya di dalam class                  |
-// | `protected` | Class & subclass                      |
+// | `protected` | Bisa diakses dari Class & subclass                      |
 // | `readonly`  | Tidak bisa diubah setelah constructor |
