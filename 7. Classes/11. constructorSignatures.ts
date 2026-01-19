@@ -1,3 +1,11 @@
+//Definisi
+//Constructor signature adlh Bentuk / kontrak function yang bisa dipanggil dengan new
+//contoh paling sederhana: // new (x: number, y: number) => Point
+//Artinya:
+// Harus dipanggil pakai new
+// Menerima x: number, y: number
+// Menghasilkan object bertipe Point
+
 class Point {
   createdAt: number;
   x: number;
@@ -8,7 +16,15 @@ class Point {
     this.y = y;
   }
 }
-type PointInstance = InstanceType<typeof Point>; // === Point
+type PointInstance = InstanceType<typeof Point>; // -> hasilnya adlh 'Point'
+// typeof Point:
+// {
+//   new (x: number, y: number): Point
+// }
+
+//InstanceType:
+// Ambil hasil return dari constructor new(...)
+
 //InstanceType<T> artinya:
 // Ambil tipe object yang dihasilkan oleh new T()
 
