@@ -1,3 +1,10 @@
+//abstract class ga bisa di-instansiasi langsung
+//Abstract class TIDAK PERNAH bisa dikonstruksi, bahkan “secara runtime”.
+//Tujuannya hanya sebagai blueprint / kontrak
+// Method abstract:
+// tidak punya implementasi
+// wajib di-override oleh subclass konkret
+
 abstract class Base {
   abstract getName(): string;
 
@@ -13,12 +20,13 @@ const b = new Base();
 //SOLUTION: make a derived class and implement the abstract members
 
 class Derived extends Base {
+  //Subclass wajib meng-implement abstract member, shg Boleh dipakai new
   getName() {
     return 'world';
   }
 }
 
-const d = new Derived();
+const d = new Derived(); //Aman
 d.printName();
 
 //If forgot implement base's classes abstract members
@@ -46,10 +54,11 @@ class Derived2 extends Base {
     instance.printName();
   }
 
-  greet(Base); //it is legal -> will construct an abstract class, but its a bad practice
+  greet(Base); //ini BOLEH dipanggil secara type, TAPI function greet TIDAK BISA memanggil new Base()
 
   //SOLUTION: write a function that accepts something with a construct signature
   function greet2(ctor: new () => Base) {
+    //Artinya: constructor non-abstract yang menghasilkan Base
     const instance = new ctor();
     instance.printName();
   }
