@@ -24,3 +24,14 @@ class Employee {
 const andi: Person = new Employee(); //Aman
 const p: Employee = new Person();
 //    ^ Property 'salary' is missing in type 'Person' but required in type 'Employee'.
+
+class Empty {} // iseng
+
+function fn(x: Empty) {
+  // can't do anything with 'x', so jangan dilakukan, percuma
+}
+
+// All OK!
+fn(window);
+fn({});
+fn(fn);
