@@ -50,7 +50,7 @@
     "moduleResolution": "NodeNext",
     "outDir": "dist",
     "rootDir": ".",
-    "esModuleInterop": true
+    "esModuleInterop": true //esModuleInterop = “adapter” antara CommonJS ↔ ES Modules
   },
   "include": ["**/*.ts"]
 }
