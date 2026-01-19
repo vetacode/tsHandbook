@@ -1,14 +1,16 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
+    "module": "esnext",
+    "verbatimModuleSyntax": true,
     // File Layout
     // "rootDir": "./src",
     // "outDir": "./dist",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
-    "target": "esnext",
+
+    "target": "es2020",
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],
@@ -37,7 +39,7 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
+
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
@@ -48,7 +50,7 @@
     "moduleResolution": "NodeNext",
     "outDir": "dist",
     "rootDir": ".",
-    "esModuleInterop": true
+    "esModuleInterop": true,
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts"],
 }
