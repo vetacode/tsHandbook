@@ -1,45 +1,42 @@
-//Awaited<Type> itu tipe helper di TypeScript yang meniru perilaku await di JavaScript
+//1. Awaited<Type>
+// itu tipe helper di TypeScript yang meniru perilaku await di JavaScript
 
-//Awaited<Type>
-type A = Awaited<Promise<string>>;
-// type A = string
+//2. Partial<Type>
 
-type B = Awaited<Promise<Promise<number>>>;
-// type B = number
+//3. Required<Type>
 
-type C = Awaited<boolean | Promise<number>>;
-// type C = number | boolean
+//4. Readonly<Type>
 
-//Ketika kita menulis: const result = await something;
-//TS pakai Awaited<typeof something> untuk menentukan type result
+//5. Record<Keys, Type>
 
-//Contoh Promise biasa:
-type A = Awaited<Promise<string>>;
-//Promise<string> -> dibuka -> string
+//6. Pick<Type, Keys>
 
-//Nested Promise
-type B = Awaited<Promise<Promise<number>>>;
-//Promise pertama dibuka -> isinya masih Promise
-//buka lagi -> hasilnya: number
+//7. Omit<Type, Keys>
 
-//Union (mix)
-type C = Awaited<boolean | Promise<number>>;
+//8. Exclude<UnionType, ExcludedMembers>
 
-//Diproses satu per satu:
-//boolean (bukan Promise) -> boolean
-//Promise<number> -> dibuka -> number
-//hasil: boolean | number
+//9. Extract<Type, Union>
 
-//NOTES:
-//Promise → dibuka
-//Promise di dalam Promise → dibuka terus
-//Bukan Promise → tetap
-//Union → diproses per anggota
+//10. NonNullable<Type>
 
-//Aplikasi:
-async function getData() {
-  return Promise.resolve(123);
-}
+//11. Parameters<Type>
 
-type Result = Awaited<ReturnType<typeof getData>>;
-// Result = number
+//12. ConstructorParameters<Type>
+
+//13. ReturnType<Type>
+
+//14. InstanceType<Type>
+
+//15. NoInfer<Type>
+
+//16. ThisParameterType<Type>
+
+//17. OmitThisParameter<Type>
+
+//18. ThisType<Type>
+
+//19. Intrinsic String Manipulation Types:
+//    Uppercase<StringType>
+//    Lowercase<StringType>
+//    Capitalize<StringType>
+//    Uncapitalize<StringType>
