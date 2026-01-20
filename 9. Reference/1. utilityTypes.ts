@@ -8,6 +8,7 @@
 //utility type yang fungsinya mengubah semua properti opsional (?) menjadi wajib (required).
 
 //4. Readonly<Type>
+//Mengubah semua properti di dalam suatu type menjadi readonly
 
 //5. Record<Keys, Type>
 
