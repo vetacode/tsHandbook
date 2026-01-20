@@ -2,6 +2,7 @@
 // itu tipe helper di TypeScript yang meniru perilaku await di JavaScript
 
 //2. Partial<Type>
+//utility type untuk mengubah semua properti dalam suatu type menjadi optional (?)
 
 //3. Required<Type>
 
