@@ -11,6 +11,7 @@
 //Mengubah semua properti di dalam suatu type menjadi readonly
 
 //5. Record<Keys, Type>
+//membuat type object dengan key tertentu dan value dengan type yang sama
 
 //6. Pick<Type, Keys>
 
