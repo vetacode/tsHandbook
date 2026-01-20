@@ -38,8 +38,13 @@ updateTodo({ description: 'Check' });
 
   function updateTodo2(todo: Todo, fieldsToUpdate: Partial<Todo>) {
     return { ...todo, ...fieldsToUpdate };
+    //Urutan penting
+    // Spread kiri → kanan
+    // Properti di kanan menimpa yang kiri
   }
-
+  const todo1: Todo = { title: 'deskripsi', description: 'test' };
   //Pemanggilan function:
-  const todo = updateTodo2(todo, { description: 'updating todo desc' });
+  const todo2 = updateTodo2(todo1, { description: 'updating todo desc' });
+  //Hasil:
+  // todo2 === {title: 'deskripsi', description: 'updating todo desc'}
 }
