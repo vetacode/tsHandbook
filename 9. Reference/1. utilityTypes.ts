@@ -14,6 +14,7 @@
 //membuat type object dengan key tertentu dan value dengan type yang sama
 
 //6. Pick<Type, Keys>
+//membuat type baru dengan mengambil (memilih) properti tertentu saja dari sebuah type/interface lain.
 
 //7. Omit<Type, Keys>
 
