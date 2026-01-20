@@ -5,6 +5,7 @@
 //utility type untuk mengubah semua properti dalam suatu type menjadi optional (?)
 
 //3. Required<Type>
+//utility type yang fungsinya mengubah semua properti opsional (?) menjadi wajib (required).
 
 //4. Readonly<Type>
 
