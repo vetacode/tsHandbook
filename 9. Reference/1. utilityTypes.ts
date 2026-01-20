@@ -17,6 +17,7 @@
 //membuat type baru dengan mengambil (memilih) properti tertentu saja dari sebuah type/interface lain.
 
 //7. Omit<Type, Keys>
+//digunakan untuk membuat type baru dari sebuah type, dengan menghapus properti tertentu.
 
 //8. Exclude<UnionType, ExcludedMembers>
 

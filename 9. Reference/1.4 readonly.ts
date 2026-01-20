@@ -12,16 +12,17 @@ const todo: Readonly<Todo> = {
 todo.title = 'Hello';
 // Error: Cannot assign to 'title' because it is a read-only property.
 
-//2. readonly pada props:
-interface Todo {
-  readonly title: string;
+{
+  //2. readonly pada props:
+  interface Todo {
+    readonly title: string;
+  }
+
+  const todo: Todo = { title: 'Learn TS' };
+
+  todo.title = 'Learn JS';
+  // Error juga
 }
-
-const todo: Todo = { title: 'Learn TS' };
-
-todo.title = 'Learn JS';
-// Error juga
-
 //Bedanya 1 vs 2:
 // readonly di props → dipakai per property
 // Readonly<T> di variable → otomatis membuat SEMUA property readonly
