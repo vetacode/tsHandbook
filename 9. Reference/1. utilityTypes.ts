@@ -20,6 +20,7 @@
 //digunakan untuk membuat type baru dari sebuah type, dengan menghapus properti tertentu.
 
 //8. Exclude<UnionType, ExcludedMembers>
+//menghapus anggota tertentu dari sebuah union type.
 
 //9. Extract<Type, Union>
 
