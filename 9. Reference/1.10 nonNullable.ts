@@ -50,8 +50,11 @@ const name2: string | null = 'Andi';
 name2.toUpperCase(); // -> kenapa tidak error? Ini Disebut: Control Flow Analysis / Narrowing
 // const name2: string
 
-const safeName = assertNotNull(name);
+const safeName = assertNotNull(name2);
 // safeName: string
+
+safeName.length;
+safeName.toUpperCase();
 
 //Aplikasi 3: kombinasi dgn optional props
 type User2 = {
