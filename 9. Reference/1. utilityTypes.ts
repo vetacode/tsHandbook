@@ -32,8 +32,10 @@
 //mengambil tipe parameter dari sebuah function, lalu mengubahnya jadi tuple
 
 //12. ConstructorParameters<Type>
+//mengambil tipe parameter dari sebuah constructor (new), lalu mengubahnya menjadi tuple type.
 
 //13. ReturnType<Type>
+//mengambil tipe hasil return dari sebuah function
 
 //14. InstanceType<Type>
 
