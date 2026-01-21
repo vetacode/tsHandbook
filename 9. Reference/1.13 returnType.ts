@@ -94,3 +94,21 @@ type User = ReturnType<typeof getUser>;
 // Selalu sinkron
 // Tidak duplikasi type
 
+//Aplikasi di project Async
+//API
+async function fetchUser() {
+  return {
+    id: 1,
+    name: "Budi",
+    role: "admin",
+  };
+}
+//Ambil return type nya:
+type FetchUserResult = Awaited<ReturnType<typeof fetchUser>>;
+//Hasil:
+type FetchUserResult = {
+  id: number;
+  name: string;
+  role: string;
+};
+
