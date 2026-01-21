@@ -46,6 +46,10 @@ function assertNotNull<T>(value: T): NonNullable<T> {
 }
 
 const name2: string | null = 'Andi';
+//ini msh possible null, jd ga bs (seharusnya):
+name2.toUpperCase(); // -> kenapa tidak error? Ini Disebut: Control Flow Analysis / Narrowing
+// const name2: string
+
 const safeName = assertNotNull(name);
 // safeName: string
 
