@@ -40,3 +40,14 @@ type Shape =
   | { kind: 'triangle'; x: number; y: number };
 
 type NonCircle = Exclude<Shape, { kind: 'circle' }>;
+
+//EDGE CASE: Assignable
+
+type T = Exclude<{ a: number; b: string }, { a: number }>;
+//Pahami ini bukan Union, tapi 'satu object type'
+
+//Assignabile:
+// { a: number; b: string } extends { a: number } -> true
+
+//hasil:
+type T = never;
