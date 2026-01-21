@@ -29,6 +29,7 @@
 //menghapus null dan undefined dari suatu union type
 
 //11. Parameters<Type>
+//mengambil tipe parameter dari sebuah function, lalu mengubahnya jadi tuple
 
 //12. ConstructorParameters<Type>
 
