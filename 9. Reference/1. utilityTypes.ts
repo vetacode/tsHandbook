@@ -25,6 +25,7 @@
 //9. Extract<Type, Union>
 
 //10. NonNullable<Type>
+//menghapus null dan undefined dari suatu union type
 
 //11. Parameters<Type>
 
