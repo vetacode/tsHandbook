@@ -23,6 +23,7 @@
 //menghapus anggota tertentu dari sebuah union type.
 
 //9. Extract<Type, Union>
+//mengambil (menyaring) dari Type hanya member union yang cocok / assignable ke Union
 
 //10. NonNullable<Type>
 //menghapus null dan undefined dari suatu union type
