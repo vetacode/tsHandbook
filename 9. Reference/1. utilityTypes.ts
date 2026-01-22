@@ -50,6 +50,7 @@
 //Menghapus parameter this dari sebuah function type
 
 //18. ThisType<Type>
+//memberitahu TS bahwa this punya properti bertipe <Type>
 
 //19. Intrinsic String Manipulation Types:
 //    Uppercase<StringType>
