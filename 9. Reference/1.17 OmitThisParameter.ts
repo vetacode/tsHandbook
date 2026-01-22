@@ -59,3 +59,13 @@ function bindSafe<F extends (this: any, ...args: any[]) => any>(
 // | `OmitThisParameter<T>` | Hapus `this`                 |
 // | `Parameters<T>`        | Ambil argumen (tanpa `this`) |
 // | `ReturnType<T>`        | Ambil return                 |
+
+//Kapan perlu pakai OmitThisParameter jika:
+// Pakai .bind()
+// Konversi method → callback
+// Utility function / library
+// Hindari error "this context" di TS
+
+//Tidak perlu jika:
+// Tidak pakai this
+// Pakai arrow function (this lexical)
