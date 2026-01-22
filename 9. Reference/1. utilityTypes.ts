@@ -38,6 +38,7 @@
 //mengambil tipe hasil return dari sebuah function
 
 //14. InstanceType<Type>
+//mengambil tipe hasil objek yang dihasilkan oleh constructor (new)
 
 //15. NoInfer<Type>
 
