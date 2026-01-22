@@ -53,6 +53,8 @@
 //memberitahu TS bahwa this punya properti bertipe <Type>
 
 //19. Intrinsic String Manipulation Types:
+//memanipulasi string di level type system (bukan runtime).
+
 //    Uppercase<StringType>
 //    Lowercase<StringType>
 //    Capitalize<StringType>
