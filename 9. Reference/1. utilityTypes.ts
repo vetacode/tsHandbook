@@ -44,6 +44,7 @@
 //jangan pakai tipe ini sebagai sumber inferensi
 
 //16. ThisParameterType<Type>
+//Mengambil tipe this dari sebuah function type
 
 //17. OmitThisParameter<Type>
 
