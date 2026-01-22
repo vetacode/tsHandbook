@@ -41,6 +41,7 @@
 //mengambil tipe hasil objek yang dihasilkan oleh constructor (new)
 
 //15. NoInfer<Type>
+//jangan pakai tipe ini sebagai sumber inferensi
 
 //16. ThisParameterType<Type>
 
