@@ -47,6 +47,7 @@
 //Mengambil tipe this dari sebuah function type
 
 //17. OmitThisParameter<Type>
+//Menghapus parameter this dari sebuah function type
 
 //18. ThisType<Type>
 
