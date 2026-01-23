@@ -46,3 +46,7 @@ sealed(User);
   // Constructor dijalankan
   // Sesudah new
 }
+
+function sealed2(target) {
+  // do something with 'target' ...
+}
