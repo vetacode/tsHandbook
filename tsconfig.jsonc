@@ -11,10 +11,11 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
 
-    "target": "es2017",
+    "target": "ES2017",
     // "target": "esnext",
     "types": [],
     // For nodejs:
+    "lib": ["ES2017"],
     // "lib": ["esnext"],
     // "types": ["node"],
     // and npm install -D @types/node
