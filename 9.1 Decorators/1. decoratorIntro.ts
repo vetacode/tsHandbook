@@ -1,11 +1,10 @@
 // Decorator = fungsi khusus yang dipanggil saat runtime untuk:
-// membaca info dari class / method / property
-// atau mengubah perilakunya
+// membaca info dari class / method / property, atau mengubah perilakunya
 // Bentuknya selalu pakai @.
 
 @sealed
 class MyClass {}
-//Artinya: TS, jalankan fungsi sealed dan kasih dia info tentang MyClass!
+//Artinya: jalankan fungsi sealed dan kasih dia info tentang MyClass!
 
 //Decorator adlh function biasa
 function sealed(target) {
