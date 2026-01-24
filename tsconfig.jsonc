@@ -1,8 +1,9 @@
 {
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    "module": "esnext",
-    "verbatimModuleSyntax": true,
+    "module": "CommonJS",
+    // "module": "esnext",
+    "verbatimModuleSyntax": false,
     // File Layout
     // "rootDir": "./src",
     // "outDir": "./dist",
@@ -10,13 +11,15 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
 
-    "target": "esnext",
+    "target": "es2017",
+    // "target": "esnext",
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
     // and npm install -D @types/node
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
 
     // Other Outputs
     "sourceMap": true,
@@ -41,12 +44,12 @@
     "strictNullChecks": true,
     "jsx": "react-jsx",
 
-    "isolatedModules": true,
+    "isolatedModules": false,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
     // "strictPropertyInitialization": false,
-    // "useDefineForClassFields": true,
+    "useDefineForClassFields": false,
 
     "moduleResolution": "NodeNext",
     "outDir": "dist",
