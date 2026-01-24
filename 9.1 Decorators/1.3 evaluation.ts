@@ -50,9 +50,37 @@ class User {
 
 // 4 Class Decorator
 
-//Instance member
+//Instance member (Property & Method)
 updateProfile(
   @log("Parameter")
   age: number
 ) {}
+//Parameter decorator dieksekusi dulu → baru method/property decorator
 
+//2. Static Member -> Sama seperti instance, tapi dieksekusi SETELAH instance member selesai
+static create(
+  @log("Static Param")
+  name: string
+) {}
+//Static param -> baru Static method
+
+//3. Constructor Parameter -> Constructor tidak punya method decorator, jadi:
+constructor(
+  @log("Constructor Param")
+  name: string
+) {}
+//langsung dieksekusi
+
+//4. Class Decorator (PALING TERAKHIR)
+@log("Class Decorator")
+class User {}
+//-> dieksekusi setelah semua isi class selesai diproses
+
+
+//NOTES:
+// | Tahap | Yang Dieksekusi             |
+// | ----- | --------------------------- |
+// | 1     | Parameter → Instance member |
+// | 2     | Parameter → Static member   |
+// | 3     | Constructor parameter       |
+// | 4     | Class decorator             |
