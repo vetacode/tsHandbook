@@ -112,3 +112,32 @@ interface Cloner {
     createElement(tagName: any): Element;
   }
 }
+
+//Kenapa harus ada urutan? apa fungsinya?
+//Urutan hasil merge itu krusial karena TypeScript memilih overload dari ATAS ke BAWAH.
+// Salah urutan = salah tipe yang dipilih.
+
+function fn(x: string): 'STRING';
+function fn(x: any): 'ANY';
+function fn(x: any) {
+  return x;
+}
+
+fn('hello'); //Hasilnya STRING
+//string cocok
+// dicek duluan
+// any nggak pernah dipakai
+
+{
+  //Kalo urutannya kebalik:
+  function fnc(x: any): 'ANY';
+  function fnc(x: string): 'STRING';
+  function fnc(x: any) {
+    return x;
+  }
+
+  fnc('hello'); // Hasilnya 'ANY'
+  //"hello" cocok ke any
+  // TS berhenti di situ
+  // overload string nggak pernah kepakai
+}
