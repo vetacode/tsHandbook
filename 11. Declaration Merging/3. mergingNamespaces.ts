@@ -25,3 +25,30 @@ namespace Animals {
 //tanpa export = PRIVATE
 // Hanya bisa dipakai di blok namespace itu aja
 // Namespace lain yang “merge” nggak bisa lihat
+
+namespace Animal {
+  let haveMuscles = true;
+
+  export function animalsHaveMuscles() {
+    return haveMuscles;
+  }
+}
+// haveMuscles PRIVATE
+// animalsHaveMuscles PUBLIC
+//AMAN: coz function & variable ada di namespace yang sama
+
+namespace Animal {
+  // export let haveMuscles = true;
+  export function doAnimalsHaveMuscles() {
+    return haveMuscles; //Error: coz haveMuscles ga di export -> namespace ini ga kenal haveMuscles //Cannot find name 'haveMuscles'.
+  }
+}
+
+//Solusi: export haveMuscles
+namespace Animal {
+  export let haveMuscles = true;
+
+  export function animalsHaveMuscles() {
+    return haveMuscles;
+  }
+}
