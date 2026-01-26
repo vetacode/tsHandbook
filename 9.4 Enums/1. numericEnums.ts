@@ -65,7 +65,7 @@ respond('Princess Caroline', UserResponse.Yes);
 //Tidak bisa kirim sembarang angka
 // Hanya UserResponse.No atau UserResponse.Yes
 
-//Constant member vs Computed member
+//5. Constant member vs Computed member
 //constant member -> Nilainya bisa dihitung saat compile time
 enum E {
   A = 1,
@@ -78,7 +78,7 @@ enum E {
   A = 1 + 2, // masih constant
 }
 
-//computed enum member -> Nilainya baru diketahui saat runtime:
+//6. computed enum member -> Nilainya baru diketahui saat runtime:
 enum E {
   A = getSomeValue(), // computed
 }
@@ -89,3 +89,20 @@ enum E {
 }
 //A nilainya tidak diketahui saat compile time
 // TypeScript tidak tahu harus mulai dari angka berapa untuk B
+
+//7. Kapan enum tanpa initializer BOLEH?
+//Kasus 1: di awal enum
+enum E {
+  A,
+  B,
+  C,
+}
+//OK → mulai dari 0
+
+//Kasus 2: setelah numeric constant
+enum E {
+  A = 10,
+  B,
+  C,
+}
+//OK → 10, 11, 12
