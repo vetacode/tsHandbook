@@ -10,7 +10,7 @@ const el = <div />;
 
 declare namespace JSX {
   interface Element {
-    __brand: "JSXElement";
+    __brand: 'JSXElement';
   }
 }
 
