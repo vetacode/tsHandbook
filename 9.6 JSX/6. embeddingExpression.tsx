@@ -38,3 +38,12 @@ const a = (
 //Penting:
 // Transformasi ini tidak menghilangkan error tipe
 // Type checking dilakukan pada tahap TypeScript AST, bukan pada hasil JavaScript
+
+// | Konsep               | Inti Penjelasan                                                              |                              |
+// | -------------------- | ---------------------------------------------------------------------------- | ---------------------------- |
+// | JSX result type      | Hasil JSX bertipe `any` secara default atau `JSX.Element` jika dikustomisasi |                              |
+// | `JSX.Element`        | Hanya representasi abstrak (black box), tanpa info elemen/props              |                              |
+// | Function return type | Default `JSX.Element                                                         | null`, tapi bisa disesuaikan |
+// | `JSX.ElementType`    | Menentukan apa yang sah sebagai komponen JSX (TS 5.1+)                       |                              |
+// | Props typing         | Selalu berasal dari parameter pertama komponen                               |                              |
+// | Embedded expressions | Sepenuhnya di–type check seperti ekspresi TypeScript biasa                   |                              |
