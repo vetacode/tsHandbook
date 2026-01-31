@@ -82,3 +82,40 @@ class EightBitSprite extends Sprite {
 //Tapi bedanya:
 // Ini dinamis
 // Bisa dipakai ulang ke class lain
+
+
+//5. Menggunakan Hasilnya
+const flappySprite = new EightBitSprite("Bird");
+
+flappySprite.setScale(0.8);
+console.log(flappySprite.scale);
+
+
+//Yang bisa dilakukan sekarang:
+// Properti dari Sprite → name, x, y
+// Fitur dari mixin → setScale(), scale
+
+//Analogi Dunia Nyata
+//Bayangkan:
+// Sprite = HP polos
+// Scale = casing + fitur kickstand
+// EightBitSprite = HP + casing terpasang
+
+//Mixin tidak mengubah HP asli, tapi membuat versi baru yang lebih powerful.
+
+//Kenapa Pakai Mixin?
+//Tanpa mixin
+// Terlalu banyak extends
+// Hierarki rumit
+
+//Dengan mixin
+// Komposisi fleksibel
+// Bisa:
+Scale(Jumpable(Movable(Sprite)))
+
+//Ringkasan:
+// Mixin = function
+// Input: class
+// Output: class baru
+// Tujuan: nambah fitur tanpa inheritance ribet
+// Dipakai dengan: const NewClass = Mixin(BaseClass)
