@@ -9,7 +9,7 @@ function Scale<TBase extends Constructor>(Base: TBase) {}
 // Kalau kita panggil this.setPos() → TypeScript akan protes
 // -> Jadi susah bikin mixin yang bergantung pada fitur tertentu
 
-//Solusi: Constrained Mixins
+//1. Solusi: Constrained Mixins
 // Kita kasih syarat (constraint):
 // “Mixin ini hanya boleh dipakai oleh class yang punya kemampuan tertentu.”
 
@@ -25,7 +25,7 @@ type GConstructor<T = {}> = new (...args: any[]) => T;
 // “Class yang instance-nya minimal punya bentuk T.”
 // Ini kunci constrained mixin.
 
-//Mendefinisikan “Kemampuan” (Bukan Class!)
+//2. Mendefinisikan “Kemampuan” (Bukan Class!)
 type Positionable = GConstructor<{
   setPos: (x: number, y: number) => void;
 }>;
@@ -37,3 +37,36 @@ type Positionable = GConstructor<{
 // inheritance-nya bagaimana
 
 //Yang penting punya method itu
+
+// Contoh lainnya:
+type Spritable = GConstructor<Sprite>;
+// 👉 Harus instance dari Sprite
+type Loggable = GConstructor<{ print: () => void }>;
+// 👉 Harus punya print()
+
+//3. Mixin dengan Constraint
+// Sekarang kita bikin mixin Jumpable:
+function Jumpable<TBase extends Positionable>(Base: TBase) {
+  return class Jumpable extends Base {
+    jump() {
+      this.setPos(0, 20);
+    }
+  };
+}
+// Yang penting di sini:
+// TBase extends Positionable
+
+//Artinya:
+// ❌ Tidak semua class boleh pakai mixin ini
+// ✅ HANYA class yang punya setPos(x, y)
+
+//4. Kenapa this.setPos() Aman?
+//Karena:
+// Positionable menjamin
+// Base punya setPos
+
+//Jadi TypeScript bilang:
+// “Oke, aku percaya. Method ini pasti ada.”
+
+// 🚫 Tanpa constraint → TypeScript error
+// ✅ Dengan constraint → type-safe
