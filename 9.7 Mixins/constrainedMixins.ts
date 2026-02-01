@@ -70,3 +70,47 @@ function Jumpable<TBase extends Positionable>(Base: TBase) {
 
 // 🚫 Tanpa constraint → TypeScript error
 // ✅ Dengan constraint → type-safe
+
+//5. Contoh Pemakaian (Biar Kebayang)
+class Player {
+  x = 0;
+  y = 0;
+
+  setPos(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+  }
+}
+// ✔️ BOLEH
+const JumpingPlayer = Jumpable(Player);
+
+// Kalau class tidak punya setPos:
+class Tree {
+  height = 10;
+}
+
+// ❌ ERROR
+const JumpingTree = Jumpable(Tree);
+
+// TypeScript langsung cegah 💥
+// ➡️ bug ketangkep sebelum runtime
+
+//Analogi Dunia Nyata
+// Mixin Jumpable = sepatu lompat
+// Syarat: harus punya kaki
+// Positionable = "punya kaki"
+// Player punya kaki → ✅
+// Pohon nggak punya kaki → ❌
+
+//Ringkasan:
+// Constrained mixin = mixin dengan syarat
+// Pakai:
+//  GConstructor<T>
+//  Constraint memastikan:
+//  - method tertentu pasti ada
+//  - TypeScript jadi lebih pintar & aman
+
+//Kapan Pakai constrained mixin? ketika:
+// mixin bergantung pada method tertentu
+// kamu mau hindari runtime error
+// kamu bikin library / framework
