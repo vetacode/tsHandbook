@@ -5,17 +5,19 @@ function f() {
   return message;
 }
 
-function f() {
+function f2() {
   var a = 10;
   return function g() {
     var b = a + 1;
     return b;
   };
 }
-var g = f();
+var g = f2();
 g(); // returns '11'
+//g() masih “ingat” a = 10
+// Ini namanya closure
 
-function f() {
+function f3() {
   var a = 1;
   a = 2;
   var b = g();
@@ -25,6 +27,6 @@ function f() {
     return a;
   }
 }
-f(); // returns '2'
+f3(); // returns '2'
 
 //1. Scoping Rules
