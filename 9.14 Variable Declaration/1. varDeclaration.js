@@ -1,10 +1,8 @@
 var a = 10;
-
 function f() {
   var message = 'Hello, world!';
   return message;
 }
-
 function f2() {
   var a = 10;
   return function g() {
@@ -16,7 +14,6 @@ var g = f2();
 g(); // returns '11'
 //g() masih “ingat” a = 10
 // Ini namanya closure
-
 function f3() {
   var a = 1;
   a = 2;
@@ -30,11 +27,11 @@ function f3() {
 f3(); // returns '2'
 
 //1. Scoping Rules
-function f4(shouldInitialize: boolean) {
+function f4(shouldInitialize) {
   if (shouldInitialize) {
     var x = 10;
   }
   return x;
 }
-f4(true); // returns '10'
-f4(false); // returns 'undefined'
+console.log(f4(true)); // returns '10'
+console.log(f4(false)); // returns 'undefined'
