@@ -38,3 +38,15 @@ function f4(shouldInitialize: boolean) {
 }
 f4(true); // returns '10'
 f4(false); // returns 'undefined'
+
+function sumMatrix(matrix: number[][]) {
+  var sum = 0;
+  for (var i = 0; i < matrix.length; i++) {
+    var currentRow = matrix[i];
+    for (var i = 0; i < currentRow.length; i++) {
+      sum += currentRow[i];
+    }
+  }
+  return sum;
+}
+//inner i akan me-replace outer i karena i refers to function-scoped variable yang sama
