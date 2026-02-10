@@ -1,7 +1,6 @@
 let hello = 'Hello!';
 
-//Block-scoping
-
+//1. Block-scoping
 function f(input: boolean) {
   let a = 100;
   if (input) {
@@ -45,4 +44,40 @@ console.log(e);
   // foo() boleh dipanggil
   // error muncul saat a diakses di dalam foo
   // bukan saat foo() dipanggil
+}
+
+//2. Re-declarations and Shadowing
+//With var declarations, we mentioned that it didn’t matter how many times you declared your variables; you just got one.
+function f(x) {
+  var x;
+  var x;
+  if (true) {
+    var x;
+  }
+}
+{
+  let x = 10;
+  let x = 20; // error: can't re-declare 'x' in the same scope
+}
+
+{
+  function f(x) {
+    let x = 100; // error: interferes with parameter declaration
+  }
+  function g() {
+    let x = 100;
+    var x = 100; // error: can't have both declarations of 'x'
+  }
+}
+
+{
+  function f(condition, x) {
+    if (condition) {
+      let x = 100;
+      return x;
+    }
+    return x;
+  }
+  f(false, 0); // returns '0'
+  f(true, 0); // returns '100'
 }
