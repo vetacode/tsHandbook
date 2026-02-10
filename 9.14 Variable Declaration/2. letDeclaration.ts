@@ -81,3 +81,71 @@ function f(x) {
   f(false, 0); // returns '0'
   f(true, 0); // returns '100'
 }
+
+//SHADOWING
+// (variabel di scope dalam menutupi variabel di luar))
+//Shadowing itu terjadi saat kita membuat variabel dengan nama yang sama di scope yang lebih dalam, sehingga:
+// variabel yang baru “menutupi” (men-shadow) variabel di luar
+// variabel luar tidak bisa diakses selama kita berada di scope dalam itu
+
+// Ibaratnya:
+// Ada orang bernama i di luar ruangan, lalu di dalam ruangan ada orang lain yang juga bernama i.
+// Selama kamu di dalam ruangan, yang kamu lihat cuma i yang di dalam, bukan yang di luar.
+
+function sumMatrix(matrix: number[][]) {
+  let sum = 0;
+
+  for (let i = 0; i < matrix.length; i++) {
+    var currentRow = matrix[i];
+
+    for (let i = 0; i < currentRow.length; i++) {
+      sum += currentRow[i];
+    }
+  }
+
+  return sum;
+}
+
+//Kenapa ini tetap jalan dengan benar?
+//Karena:
+// let itu block-scoped
+// i di loop dalam berbeda variabel dengan i di loop luar
+// i yang di dalam meng-shadow i luar
+
+//Artinya:
+// loop luar: i = index baris
+// loop dalam: i = index kolom
+// keduanya tidak saling ganggu
+// Makanya hasil penjumlahan tetap benar
+
+//Tapi… ini bahaya secara readability
+// Walaupun secara teknis benar, ini tidak disarankan karena:
+
+// ❌ Sulit dibaca
+// Orang yang baca (termasuk kamu di masa depan) bisa mikir:
+// “Ini i yang mana ya?”
+
+// ❌ Mudah bikin bug
+//Kalau suatu saat:
+// loop diubah
+// atau let diganti var
+// atau ada logika tambahan
+
+//bug bisa muncul tanpa sadar
+
+{
+  //VERSI YG LEBIH AMAN BEST PRACTICE
+  function sumMatrix(matrix: number[][]) {
+    let sum = 0;
+
+    for (let row = 0; row < matrix.length; row++) {
+      const currentRow = matrix[row];
+
+      for (let col = 0; col < currentRow.length; col++) {
+        sum += currentRow[col];
+      }
+    }
+
+    return sum;
+  }
+}
