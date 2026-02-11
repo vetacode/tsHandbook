@@ -39,5 +39,31 @@ console.log(second); // outputs 2
 console.log(fourth); // outputs 4
 
 //TUPLE DESTRUCTURING
-let tuple: [number, string, boolean] = [7, 'hello', true];
-let [a, b, c] = tuple; // a: number, b: string, c: boolean
+{
+  let tuple: [number, string, boolean] = [7, 'hello', true];
+  let [a, b, c] = tuple; // a: number, b: string, c: boolean
+}
+
+{
+  //It’s an error to destructure a tuple beyond the range of its elements:
+  let tuple: [number, string, boolean] = [7, 'hello', true];
+  let [a, b, c, d] = tuple; // Error, no element at index 3
+}
+
+// //As with arrays, you can destructure the rest of the tuple with ..., to get a shorter tuple:
+{
+  let tuple: [number, string, boolean] = [7, 'hello', true];
+  let [a, ...bc] = tuple; // bc: [string, boolean]
+}
+
+{
+  let tuple: [number, string, boolean] = [7, 'hello', true];
+  let [a, b, c, ...d] = tuple; // d: [], the empty tuple
+}
+
+{
+  //Or ignore trailing elements, or other elements:
+  let tuple: [number, string, boolean] = [7, 'hello', true];
+  let [a] = tuple; // a: number
+  let [, b] = tuple; // b: string
+}
