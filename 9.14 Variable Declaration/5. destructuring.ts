@@ -90,3 +90,44 @@ let { a, b } = o;
   let { a, ...passthrough } = o;
   let total = passthrough.b + passthrough.c.length;
 }
+
+{
+  //PROPERTY RENAMING
+  let o = {
+    a: 'foo',
+    b: 12,
+    c: 'bar',
+  };
+  let { a: newName1, b: newName2 } = o;
+  //Artinya:
+  // Ambil property a dari object o, lalu simpan ke variabel baru bernama newName1
+  // Ambil property b dari object o, lalu simpan ke variabel baru bernama newName2
+}
+
+{
+  //Secara manual (tanpa destructuring), ini sama dengan:
+  let o = {
+    a: 'foo',
+    b: 12,
+    c: 'bar',
+  };
+  let newName1 = o.a;
+  let newName2 = o.b;
+}
+
+//Di sini:
+// let { a: newName1, b: newName2 };
+// Titik dua BUKAN berarti tipe data.
+// artinya: Ambil property a, simpan ke variabel newName1
+
+//Di dalam destructuring object, formatnya adalah:
+// propertyLama: namaVariabelBaru
+
+//Kalo mau kasih Type:
+{
+  //Confusingly, the colon here does not indicate the type. The type, if you specify it, still needs to be written after the entire destructuring:
+  let { a: newName1, b: newName2 }: { a: string; b: number } = o;
+
+  //Strukturnya jadi:
+  //{ destructuring } : { type definition } = object
+}
