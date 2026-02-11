@@ -23,13 +23,13 @@ function f([first, second]: [number, number]) {
   console.log(second);
 }
 f([1, 2]);
-// You can create a variable for the remaining items in a list using the syntax ...:
 
+// You can create a variable for the remaining items in a list using the syntax ...:
 let [first, ...rest] = [1, 2, 3, 4];
 console.log(first); // outputs 1
 console.log(rest); // outputs [ 2, 3, 4 ]
-// Of course, since this is JavaScript, you can just ignore trailing elements you don’t care about:
 
+// Of course, since this is JavaScript, you can just ignore trailing elements you don’t care about:
 let [first] = [1, 2, 3, 4];
 console.log(first); // outputs 1
 
@@ -66,4 +66,27 @@ console.log(fourth); // outputs 4
   let tuple: [number, string, boolean] = [7, 'hello', true];
   let [a] = tuple; // a: number
   let [, b] = tuple; // b: string
+}
+
+//OBJECT DESTRUCTURING
+let o = {
+  a: 'foo',
+  b: 12,
+  c: 'bar',
+};
+let { a, b } = o;
+//This creates new variables a and b from o.a and o.b. Notice that you can skip c if you don’t need it.
+
+//Like array destructuring, you can have assignment without declaration:
+({ a, b } = { a: 'baz', b: 101 }); //Notice that we had to surround this statement with parentheses. JavaScript normally parses a { as the start of block.
+
+{
+  //You can create a variable for the remaining items in an object using the syntax ...:
+  let o = {
+    a: 'foo',
+    b: 12,
+    c: 'bar',
+  };
+  let { a, ...passthrough } = o;
+  let total = passthrough.b + passthrough.c.length;
 }
