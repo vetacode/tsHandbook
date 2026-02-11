@@ -131,3 +131,20 @@ let { a, b } = o;
   //Strukturnya jadi:
   //{ destructuring } : { type definition } = object
 }
+
+//DEFAULT VALUES
+function keepWholeObject(wholeObject: { a: string; b?: number }) {
+  return;
+}
+//b? -> optional, klo ga ada nilainya undefined
+
+{
+  let wholeObject = {
+    a: 'hello',
+    b: 50,
+  };
+  let { a, b = 1001 } = wholeObject;
+
+  //Kalo b nilainya undefined, maka pakai nilai default 1001
+  //hanya berlaku jika b === undefined
+}
