@@ -37,4 +37,47 @@ function g({ a = '', b = 0 } = {}): void {
 //Sehingga jika kita panggil:
 g(); // Aman
 
-//Optional property + default
+{
+  //Optional property + default
+  type C = { a: string; b?: number };
+  //b optional, tapi a wajib.
+
+  function f({ a, b = 0 } = { a: '' }): void {
+    // ...
+  }
+
+  f({ a: 'yes' }); // Aman
+  // a = "yes"
+  // b tidak ada → default 0
+
+  f(); // Juga aman
+  // default { a: "" }
+  // b default 0
+
+  f({}); //ERROR
+  //Karena:
+  // Kamu mengirim object kosong {}
+  // Tapi a itu WAJIB di tipe C
+}
+
+//INTINYA:
+//Karena ada 3 layer default:
+// Default untuk seluruh parameter → = {}
+// Default untuk masing-masing property → a = ""
+// Aturan optional dari tipe → b?
+
+//VERSI SEDERHANA
+function f(input?: C) {
+  const { a, b = 0 } = input ?? { a: '' };
+}
+//input ?? { a: '' }; -> Nullish Coalescing Operator (??)
+//Artinya:
+// Kalau input adalah null atau undefined, pakai { a: "" }
+// Kalau tidak, pakai input.
+
+// Contoh
+f({ a: 'yes', b: 5 });
+
+//Maka:
+// input ?? { a: "" }
+// → hasilnya { a: "yes", b: 5 }
