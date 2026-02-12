@@ -45,3 +45,24 @@ let search2 = { food: 'rich', ...defaults };
 //   price: "$$",
 //   ambiance: "noisy"
 // }
+
+//3. Method akan hilang saat Spread Class
+class D {
+  p = 12;
+  m() {}
+}
+
+let d = new D();
+let clone = { ...d };
+
+clone.p; // ok
+clone.m(); // error!
+//Karena spread object hanya menyalin:
+// Own properties
+// Enumerable properties
+
+// Method class itu sebenarnya disimpan di prototype, bukan di object langsung.
+
+//Spread hanya menyalin yang langsung di object (p),
+// bukan yang di prototype (m).
+// Makanya method hilang.
