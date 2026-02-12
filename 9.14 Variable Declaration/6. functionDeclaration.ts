@@ -15,3 +15,26 @@ function f({ a, b }: C): void {
 
 //contoh pakai:
 f({ a: 'hello' }); //OK, coz b optional
+f({ a: 5 }); //error
+//  ^ Type 'number' is not assignable to type 'string'.
+
+//EDGE CASES
+//Default untuk seluruh parameter object
+function g({ a = '', b = 0 } = {}): void {
+  //...
+}
+// = {} adalah default seluruh parameter
+// tanpa = {}, JS akan mencoba destructure undefined -> ERROR
+
+//JADI
+({ a = '', b = 0 } = {});
+//Artinya:
+// Kalau tidak ada argument → pakai {} sebagai default
+//Lalu dari {} itu:
+// a default ke ""
+// b default ke 0
+
+//Sehingga jika kita panggil:
+g(); // Aman
+
+//Optional property + default
