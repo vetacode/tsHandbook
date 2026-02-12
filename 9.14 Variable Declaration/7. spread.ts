@@ -66,3 +66,29 @@ clone.m(); // error!
 //Spread hanya menyalin yang langsung di object (p),
 // bukan yang di prototype (m).
 // Makanya method hilang.
+
+//4. Spread generic Type tdk diizinkan
+function clone<T>(obj: T) {
+  return { ...obj }; // kadang error
+}
+//Karena TypeScript tidak selalu tahu:
+// Apakah T itu object?
+// Apakah T bisa di-spread?
+// Apakah T punya properti yang aman disalin?
+// Jadi compiler jadi hati-hati.
+
+//SOLUSI = Butuh constraint
+function clone2<T extends object>(obj: T) {
+  return { ...obj };
+}
+
+//Ringkasan:
+// Spread Array [...array] -> Menyebarkan isi array
+// Spread Object { ...obj } -> Menyalin semua property object
+
+//Aturan Penting
+// ✅ Shallow copy
+// ✅ Kiri ke kanan
+// ✅ Property terakhir menang
+// ✅ Hanya own + enumerable property
+// ❌ Tidak menyalin method class (prototype)
