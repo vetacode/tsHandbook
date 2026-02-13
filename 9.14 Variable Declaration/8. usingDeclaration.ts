@@ -42,3 +42,14 @@ function f() {
 x[Symbol.dispose]();
 
 // Jadi mirip try...finally, tapi otomatis.
+
+//Contoh Nyata: File
+{
+  using file = await openFile();
+  file.write(text);
+  doSomethingThatMayThrow();
+}
+
+//Walaupun doSomethingThatMayThrow() error, file tetap akan:
+// file[Symbol.dispose]();
+//Jadi file tetap tertutup. Aman
