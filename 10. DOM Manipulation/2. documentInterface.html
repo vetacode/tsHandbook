@@ -1,0 +1,240 @@
+<!-- 1. Document Itu Apa di TypeScript?
+
+Di browser, document adalah global variable.
+
+Di TypeScript, variable ini bertipe:
+
+document: Document
+
+Artinya semua method seperti:
+
+document.getElementById()
+document.createElement()
+
+datangnya dari interface Document.
+
+2️⃣ getElementById
+
+Definisinya:
+
+getElementById(elementId: string): HTMLElement | null;
+
+Artinya:
+
+Input: string (id)
+
+Output: HTMLElement atau null
+
+Kenapa bisa null?
+
+Karena sebelum runtime, TypeScript tidak tahu apakah elemen itu benar-benar ada di HTML atau tidak.
+
+Contoh:
+
+const el = document.getElementById("box");
+
+Type dari el adalah:
+
+HTMLElement | null
+
+Karena itu kita sering pakai:
+
+✅ Optional chaining
+el?.appendChild(...)
+
+atau
+
+✅ Null checking
+if (el) {
+  el.appendChild(...)
+}
+🔥 Penting: HTMLElement adalah Base Interface
+
+HTMLElement adalah parent dari semua element HTML.
+
+Contoh:
+
+HTMLParagraphElement
+HTMLAnchorElement
+HTMLDivElement
+
+Semua ini turunan dari:
+
+HTMLElement
+3️⃣ createElement (Bagian Paling Menarik)
+
+Definisinya ada 2 (overload):
+
+createElement<K extends keyof HTMLElementTagNameMap>(
+  tagName: K,
+  options?: ElementCreationOptions
+): HTMLElementTagNameMap[K];
+
+createElement(
+  tagName: string,
+  options?: ElementCreationOptions
+): HTMLElement;
+🔹 Overload Kedua (Yang Simple)
+createElement(tagName: string): HTMLElement;
+
+Kalau kita kasih string biasa:
+
+document.createElement("xyz")
+
+TypeScript cuma tahu ini HTMLElement.
+
+Karena "xyz" bukan tag yang dikenal HTML spec.
+
+🔹 Overload Pertama (Yang Cerdas 🔥)
+<K extends keyof HTMLElementTagNameMap>
+
+Ini bagian pentingnya.
+
+🧠 Apa itu HTMLElementTagNameMap?
+
+Interface ini berisi mapping:
+
+interface HTMLElementTagNameMap {
+  "a": HTMLAnchorElement;
+  "abbr": HTMLElement;
+  "address": HTMLElement;
+  "applet": HTMLAppletElement;
+  "area": HTMLAreaElement;
+  ...
+}
+
+Artinya:
+
+Jika tag "a" → return HTMLAnchorElement
+
+Jika tag "area" → return HTMLAreaElement
+
+Jika tag "p" → return HTMLParagraphElement
+
+4️⃣ Breakdown Generic-nya
+Bagian 1
+<K extends keyof HTMLElementTagNameMap>
+
+Artinya:
+
+Buat generic type K, dan K harus salah satu key dari:
+
+"a" | "abbr" | "address" | ...
+Bagian 2
+(tagName: K)
+
+Artinya parameter tagName harus salah satu key tadi.
+
+Bagian 3
+: HTMLElementTagNameMap[K]
+
+Return type-nya diambil dari map berdasarkan K.
+
+Jadi ini seperti:
+
+Jika K = "a"
+Return = HTMLElementTagNameMap["a"]
+Return = HTMLAnchorElement
+5️⃣ Kenapa Ini Powerful?
+
+Karena TypeScript bisa infer otomatis.
+
+Contoh:
+
+const p = document.createElement("p");
+
+TypeScript langsung tahu:
+
+p: HTMLParagraphElement
+
+Kalau:
+
+const a = document.createElement("a");
+
+TypeScript tahu:
+
+a: HTMLAnchorElement
+
+Jadi kita dapat autocomplete khusus:
+
+a.href      // ✅ ada
+a.target    // ✅ ada
+a.value     // ❌ error (karena bukan input)
+6️⃣ Kenapa Tidak Perlu Tulis Generic Sendiri?
+
+Karena TypeScript bisa infer dari argument.
+
+Kita tidak perlu tulis:
+
+document.createElement<"a">("a")
+
+TypeScript otomatis membaca "a" dan menetapkan:
+
+K = "a"
+7️⃣ Perbandingan Supaya Lebih Jelas
+Tanpa Generic
+function create(tagName: string): HTMLElement
+
+Return selalu HTMLElement
+→ kurang spesifik
+
+Dengan Generic Mapping
+function create<K extends keyof Map>(tag: K): Map[K]
+
+Return spesifik sesuai tag
+→ jauh lebih aman dan powerful
+
+8️⃣ Kenapa Bisa Buat Custom Tag?
+
+Karena ada overload kedua:
+
+createElement(tagName: string): HTMLElement;
+
+Jadi ini valid:
+
+document.createElement("my-component")
+
+Return type: HTMLElement
+
+9️⃣ Intinya (Summary Besar)
+📌 getElementById
+
+Return: HTMLElement | null
+
+Perlu null check
+
+📌 createElement
+
+Ada 2 versi:
+
+Generic version → pintar, return type sesuai tag
+
+String version → return default HTMLElement
+
+📌 Kenapa Generic Dipakai?
+
+Supaya:
+
+document.createElement("a")
+
+langsung punya type:
+
+HTMLAnchorElement
+
+Tanpa kita perlu cast manual.
+
+🔥 Gambaran Konsep Besarnya
+
+TypeScript menggunakan:
+
+Literal type ("a")
+→ masuk ke Generic K
+→ K dipakai untuk indexing
+→ HTMLElementTagNameMap[K]
+→ dapat type spesifik
+
+Ini disebut:
+
+Indexed Access Type + Constrained Generic
+
+Dan ini salah satu contoh real-world paling keren dari TypeScript generics. -->
