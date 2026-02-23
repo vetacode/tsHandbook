@@ -8,7 +8,7 @@
 // "div > p"
 // dll
 
-// 1️⃣ querySelector()
+// 1. querySelector()
 // 👉 Mengambil 1 elemen pertama yang cocok
 const first = document.querySelector('li');
 
@@ -39,7 +39,7 @@ if (first) {
   console.log(first.textContent);
 }
 
-//2️⃣ querySelectorAll()
+//2. querySelectorAll()
 // 👉 Mengambil SEMUA elemen yang cocok
 const all = document.querySelectorAll('li');
 
@@ -48,7 +48,7 @@ const all = document.querySelectorAll('li');
 // Bentuknya bukan array biasa
 // Tapi NodeListOf<Element>
 
-// 📦 Apa itu NodeListOf?
+// Apa itu NodeListOf?
 // NodeListOf mirip seperti array, tapi bukan array asli.
 
 // Dia punya:
@@ -68,7 +68,7 @@ all.forEach((item) => {
 // Kalau mau jadi array asli:
 // const array = Array.from(all);
 
-//🔁 Bedanya dengan getElementsByTagName?
+//Bedanya dengan getElementsByTagName?
 //querySelectorAll:
 // Lebih fleksibel
 // Bisa pakai CSS selector
@@ -82,7 +82,7 @@ all.forEach((item) => {
 // Hanya return Element
 // Bukan node lain
 
-//🧠 Kenapa TypeScript punya banyak overload seperti ini?
+//Kenapa TypeScript punya banyak overload seperti ini?
 // querySelector<K extends keyof HTMLElementTagNameMap>(selectors: K)
 
 // Supaya TypeScript bisa otomatis tahu tipenya.

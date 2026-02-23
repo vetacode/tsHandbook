@@ -1,4 +1,4 @@
-//  1️⃣ Hirarki: Node → Element → HTMLElement
+//1. Hirarki: Node → Element → HTMLElement
 // Di DOM (Document Object Model), ada struktur pewarisan seperti ini:
 
 // Node (paling dasar)
@@ -16,7 +16,7 @@
 
 // Karena HTMLElement mewarisi dari Node, maka semua elemen HTML punya method yang dimiliki Node.
 
-// 2️⃣ appendChild
+//2. appendChild
 // Method ini berasal dari Node.
 
 // appendChild<T extends Node>(newChild: T): T;
@@ -38,15 +38,15 @@ app?.appendChild(p);
 // Jadi app bisa saja null kalau id tidak ditemukan.
 // Optional chaining (?.) mencegah error kalau app ternyata null.
 
-// 3️⃣ Perbedaan children vs childNodes
-// Ini bagian yang sering bikin bingung 🔥
+//3. Perbedaan children vs childNodes
+// Ini bagian yang sering bikin bingung
 
-// ✅ children
+//children
 // Hanya berisi elemen HTML saja
 // Tipe: HTMLCollection
 // Tidak termasuk text, comment, dll
 
-// ✅ childNodes
+//childNodes
 // Berisi semua Node
 // Tipe: NodeList
 
@@ -56,7 +56,7 @@ app?.appendChild(p);
 // Comment node
 // dll
 
-//4️⃣ Contoh 1
+//4. Contoh 1
 // HTML:
 // <div>
 //   <p>Hello, World</p>
@@ -75,7 +75,7 @@ div.childNodes;
 // Kenapa sama?
 // Karena di dalam div cuma ada dua <p> saja.
 
-//5️⃣ Contoh 2 (lebih penting)
+//5. Contoh 2 (lebih penting)
 // HTML diubah jadi:
 
 // <div>
@@ -101,7 +101,7 @@ div.childNodes;
 // children ➜ hanya <p>
 // childNodes ➜ <p> + text "TypeScript!"
 
-//6️⃣ Visualisasi Sederhana
+//6. Visualisasi Sederhana
 // Struktur DOM sebenarnya seperti ini:
 
 // div
@@ -116,13 +116,13 @@ div.childNodes;
 // | children   | hanya element |
 // | childNodes | semua node    |
 
-// 7️⃣ Ringkasan Singkat
+//7. Ringkasan Singkat
 // | children           | childNodes |
 // | ------------------ | ---------- |
 // | Hanya element HTML | Semua node |
 // | Tidak ada text     | Ada text   |
 // | HTMLCollection     | NodeList   |
 
-// 🎯 Kapan pakai yang mana?
+//Kapan pakai yang mana?
 // Kalau cuma butuh elemen HTML ➜ pakai children
 // Kalau mau manipulasi semua node termasuk teks ➜ pakai childNodes

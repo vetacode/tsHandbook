@@ -48,7 +48,7 @@ Sekarang kita mau tambahkan:
 <p>Hello, World!</p>
 
 menggunakan TypeScript, STEP:
-✅ Step 1 – Ambil elemen dari HTML
+- Step 1 – Ambil elemen dari HTML
 const app = document.getElementById("app");
 
 Artinya:
@@ -57,19 +57,19 @@ Ambil elemen yang punya id "app"
 TypeScript tahu ini bisa jadi HTMLElement | null
 Karena mungkin saja elemen itu tidak ada.
 
-✅ Step 2 – Buat elemen baru
+- Step 2 – Buat elemen baru
 const p = document.createElement("p");
 
 Artinya:
 Buat elemen <p> baru di memori (belum muncul di halaman)
 
-✅ Step 3 – Isi teksnya
+- Step 3 – Isi teksnya
 p.textContent = "Hello, World!";
 
 Artinya:
 Masukkan tulisan ke dalam <p>
 
-✅ Step 4 – Masukkan ke dalam div
+- Step 4 – Masukkan ke dalam div
 app?.appendChild(p);
 
 Artinya:
@@ -93,7 +93,7 @@ Menjadi:
 Padahal kita tidak mengubah HTML manual.
 Semua dilakukan lewat JavaScript/TypeScript.
 
-🎯 Kesimpulan Sederhana
+Kesimpulan Sederhana
 HTML awalnya statis
 DOM membuat HTML bisa diubah lewat JavaScript
 TypeScript menyediakan tipe seperti HTMLElement
